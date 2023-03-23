@@ -142,11 +142,11 @@ Now go to `Extensions > TkConsole` and type `pbc box` and hit `enter` to display
 ```
 $> animate delete beg 0 end 0 skip 0 0
 $> pf_loaduser "output.psr" true 1 BWR
-
+```
 If you get an error, you may potentially need to source the pf_loaduser.tcl in the TkConsole like so:  
 ```
 $> source "C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"
 $> package require pf_loaduser
 ```
 
-The TkConsole should print out "now loading per-residue data" and after a few seconds to a minute, the results should be shown on the molecule itself. You can scroll through the trajectory and see how the different regions within the fibronectin beta sheets activate to resist the unwinding. 
+The TkConsole should print out "now loading per-residue data" and after a few seconds to a minute, the results should be shown on the molecule itself. You can scroll through the trajectory and see how the different regions within the fibronectin beta sheets activate to resist the unwinding. The final video can be seen in `fn_FDA_traj.mp4`.
