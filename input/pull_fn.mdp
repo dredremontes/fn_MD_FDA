@@ -64,6 +64,7 @@ pull-ngroups            = 2         ; defining three reaction coordinates
 pull_group1_name        = 96ILE	 ; pulled FN group 
 pull_group2_name		= 6ARG	 ; fixed FN group
 
+: constant velocity simulation
 ;pull_coord1_type        = umbrella      ; harmonic potential
 ;pull_coord1_geometry    = direction-periodic      ; periodic distance increase
 ;pull_coord1_dim         = Y N N		    ; Components printed to the output files

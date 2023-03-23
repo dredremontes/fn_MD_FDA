@@ -1,11 +1,11 @@
-# fn-MD-FDA-demo
+# fn_MD_FDA
 Fibronectin (fn) steered molecular dynamics (MD) and force distribution analysis (FDA) tutorial
 ==========
-This is an instruction manual for running steered molecular dynamics simulations of a single fibronectin subunit. All input files required to run the simulations are in `./fn-MD-FDA-demo/input/`. Completed simulation trajectories for postprocessing can be found in: `./fn-MD-FDA-demo/output/`. This tutorial walks you through how to get these outputs from scratch. However, you may choose to download the trajectory files and view the results in VMD. 
+This is an instruction manual for running steered a molecular dynamics simulation (constant pulling force of 700 pN) of a single fibronectin subunit. All input files required to run the simulations are in `./fn_MD_FDA/input/`. Completed simulation trajectories for postprocessing can be found in: `./fn_MD_FDA/output/`. This tutorial walks you through how to get these outputs from scratch and all the simulations can be done on a modern laptop with 1-3 hour runtime depending on specifications. However, you may choose to download the trajectory files and view the results in VMD. 
 
 Downloading Gromacs
 ===========
-This implementation was run in Ubuntu 20.04. The molecular dynamics software used was Gromacs 2020.4, which can be downloaded from https://ftp.gromacs.org/pub/gromacs-2020.4.tar.gz and is also available in the `./fn-MD-FDA-demo/.` The source code can be downloaded from https://manual.gromacs/org/2020.4/download.html. The tarball can be unpacked using:
+This implementation was run in Ubuntu 20.04. The molecular dynamics software used was Gromacs 2020.4, which can be downloaded from https://ftp.gromacs.org/pub/gromacs-2020.4.tar.gz and is also available in the `./fn_MD_FDA/.` The source code can be downloaded from https://manual.gromacs/org/2020.4/download.html. The tarball can be unpacked using:
 ```
 $> tar -xvzf gromacs-2020.4.tar.gz
 ```
@@ -29,9 +29,9 @@ $> source /usr/local/gromacs/bin/GMXRC
 Setting up the simulation
 ==========
 
-Reminder: all input files required to run the simulations are in `./fn-MD-FDA-demo/input/`
+Reminder: all input files required to run the simulations are in `./fn_MD_FDA/input/`
 
-If starting from scratch, download the `1fna.pdb` from https://www.rcsb.org/structure/1FNA. The amino acids 6-ARG and 7-ASP are incomplete, which creates problems later on. You can replace the 6-ARG and 7-ASP with the full ARG and ASP amino acids, respectively by using MODELLER's mutate.py function (https://salilab.org/modeller/wiki/Mutate_model). The file `./fn-MD-FDA-demo/input/fn.pdb` has this change done already. Convert the pdb file to a gro file:
+If starting from scratch, download the `1fna.pdb` from https://www.rcsb.org/structure/1FNA. The amino acids 6-ARG and 7-ASP are incomplete, which creates problems later on. You can replace the 6-ARG and 7-ASP with the full ARG and ASP amino acids, respectively by using MODELLER's mutate.py function (https://salilab.org/modeller/wiki/Mutate_model). The file `./fn_MD_FDA/input/fn.pdb` has this change done already. Convert the pdb file to a gro file:
 ```
 $> gmx pdb2gmx -f fn.pdb -o fn.gro
 ```
@@ -63,12 +63,12 @@ Equilibration
 NVT:
 ```
 $> gmx grompp -f nvt.mdp -c em.gro -p topol.top -r em.gro -o nvt.tpr
-$> gmx mdrun -deffnm nvt
+$> gmx mdrun -v -deffnm nvt
 ```
 NPT:
 ```
 $> gmx grompp -f npt.mdp -c nvt.gro -p topol.top -r nvt.gro -t nvt.cpt -o npt.tpr
-$> gmx mdrun -deffnm npt
+$> gmx mdrun -v -deffnm npt
 ```
 The RMSD can be calculated with:
 ```
@@ -94,42 +94,59 @@ Create constraints
 $> gmx genrestr -f npt.gro -n index.ndx -o R_A.itp
 $> gmx genrestr -f npt.gro -n index.ndx -o R_B.itp
 ```
-These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG, we can add the following to the bottom of the topol_Protein_chain_A.itp file:
+These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG, we can add the following to the bottom of the posre.itp file:
 ```
-#ifdef POSRES_R_A
-#include "R_A.itp"
+#ifdef R_hold
+#include "R_hold.itp"
 #endif
 ```
 For the restraint on 96-ILE, we can add the following to the bottom of the topol_Protein_chain_B.itp file:
 ```
-#ifdef POSRES_R_B
-#include "R_B.itp"
+#ifdef R_pull
+#include "R_pull.itp"
 #endif
 ```
-We must open up the R_A.itp and R_B.itp files and manually renumber the left-most column, i. This column will contain the original atom numbers, which confuses GROMACS because position restraint (.itp) files always start with the number 1. So we have to go in and manually change ALL the atom numbers in R_A.itp and R_B.itp to 1, 2, 3 and so on. 
+We must open up the R_hold.itp file and manually renumber the left-most column, i. This column will contain the original atom numbers, which confuses GROMACS because position restraint (.itp) files always start with the number 1. So we have to go in and manually change ALL the atom numbers in R_hold.itp to 1, 2, 3 and so on. 
 
 Add the following to the pull.mdp at the top if it is not already there:
 ```
-define = -DPOSRES_R_A -DPOSRES_R_B
+define = -DR_hold -DR_pull
 ```
 Running the steered MD.
 ```
-$> gmx grompp -f pull.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt.cpt -o pull.tpr
-$> gmx mdrun -deffnm pull -s pull.tpr -pf pullf.xvg -px pullx.xvg
+$> grompp -f pull_fn.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt.cpt -o pull_fn.tpr
+$> gmx mdrun -v -deffnm pull -s pull_fn.tpr -pf pullforce.xvg -px pullx.xvg
 ```
-Post-processing
-===============
-
-After running the simulations, we can extract the COM coordinates of the pull groups to calculate extension:
-```
-$> gmx trajectory -f sim_name.xtc -s sim_name.tpr -n index.ndx -ox pull-coords.xvg -seltype res_com -y yes
-```
-Select the two pull groups defined earlier to complete the selection and extraction. Gromacs will output a sim-namef.xvg file with the forces. Python can parse through the data files and after some manipulation, we can plot the force vs extension. Gromacs can also condense the trajectory files for faster viewing in VMD by extracting only the protein:
-```
-$> gmx trjconv -f sim-name.xtc -s sim-name.tpr -o new-traj.xtc
-```
-Then selecting option 1 to select the protein. We can then use VMD to load npt.gro and sim-name.xtc to create movies.
 
 Force Distribution Analysis
 ==============
-To run the force distribution analysis, we used the input file found in `./fn-MD-FDA-demo/input/input.pfi`, the steered MD trajectory of choice, and gromacs-fda from: https://github.com/HITS-MBM/gromacs-fda.
+To run the force distribution analysis, we used the input file found in `./fn_MD_FDA/input/input.pfi`, the steered MD trajectory of choice, and gromacs-fda from: https://github.com/HITS-MBM/gromacs-fda.
+```
+$> gmx_fda mdrun -nt 1 -rerun pull_fn.xtc -pfi input.pfi -pfn index.ndx -s pull_fn.tpr -psr output.psr
+```
+Post-processing - Trajectory
+===============
+
+Download and open VMD 1.9.4a https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD. Click `file > New molecule > browse` and open `./fn_MD_FDA/output/npt.gro`. In main VMD window, right click the `npt.gro` molecule (which should be highlighted) and click `Load data into molecule` and select `./fn_MD_FDA/output/pull_fn.xtc`  Then click `Load` in the Molecule File Browser window. The trajectory should now be loaded in the display. 
+
+Go to `Graphics > Representations` and under `Drawing Method` select `NewCartoon`. The cartoon representation should be displayed now and the water and ions should be hidden. 
+
+Now go to `Extensions > VMD Preferences` and go to the Custom tab. Click `New` and name it "pf_loaduser". In the "code" box, write the following lines:
+```
+$> source "C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"
+$> package require pf_loaduser
+```
+Click "Update" and then "Pull All Settings to VMD". Close out of the VMD Preferences Panel. 
+
+Now go to `Extensions > TkConsole` and type `pbc box` and hit `enter` to display the simulation cell. Now, in the TkConsole, using cd and ls, navigate to the folder containing the cloned repository and find the output.psr file in `path/to/fn_MD_FDA/output/`. For my local PC, I use `cd "C:/Users/andre/Documents/GitHub/fn_MD_FDA/output"`. Now run the following commands to remove the first frame and load the FDA results onto the trajectory:
+```
+$> animate delete beg 0 end 0 skip 0 0
+$> pf_loaduser "output.psr" true 1 BWR
+
+If you get an error, you may potentially need to source the pf_loaduser.tcl in the TkConsole like so:  
+```
+$> source "C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"
+$> package require pf_loaduser
+```
+
+The TkConsole should print out "now loading per-residue data" and after a few seconds to a minute, the results should be shown on the molecule itself. You can scroll through the trajectory and see how the different regions within the fibronectin beta sheets activate to resist the unwinding. 
