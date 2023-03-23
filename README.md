@@ -1,7 +1,7 @@
 # fn-MD-FDA-demo
 Fibronectin (fn) steered molecular dynamics (MD) and force distribution analysis (FDA) tutorial
 ==========
-This is an instruction manual for running steered molecular dynamics simulations of a single fibronectin subunit. All input files required to run the simulations are in `./fn-MD-FDA-demo/input/`.
+This is an instruction manual for running steered molecular dynamics simulations of a single fibronectin subunit. All input files required to run the simulations are in `./fn-MD-FDA-demo/input/`. Completed simulation trajectories for postprocessing can be found in: `./fn-MD-FDA-demo/output/`. This tutorial walks you through how to get these outputs from scratch. However, you may choose to download the trajectory files and view the results in VMD. 
 
 Downloading Gromacs
 ===========
@@ -81,26 +81,26 @@ $> gmx energy -f npt.edr -s npt.tpr -o output.xvg
 Steered MD
 ==========
 
-Define pull groups on integrin and fibronectin:
+Define pull groups on fibronectin:
 ```
 $> gmx make_ndx -f npt.gro
 $> a1-26
-$> name 20 int_a
+$> name 20 pull
 $> a1348-1367
-$> name 21 int_b
+$> name 21 hold
 ```
 Create constraints
 ```
 $> gmx genrestr -f npt.gro -n index.ndx -o R_A.itp
 $> gmx genrestr -f npt.gro -n index.ndx -o R_B.itp
 ```
-These position restraints need to be defined in their respective protein chain .itp files. For the restraint on int_a, we can add the following to the bottom of the topol_Protein_chain_A.itp file:
+These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG, we can add the following to the bottom of the topol_Protein_chain_A.itp file:
 ```
 #ifdef POSRES_R_A
 #include "R_A.itp"
 #endif
 ```
-For the restraint on int_b, we can add the following to the bottom of the topol_Protein_chain_B.itp file:
+For the restraint on 96-ILE, we can add the following to the bottom of the topol_Protein_chain_B.itp file:
 ```
 #ifdef POSRES_R_B
 #include "R_B.itp"
@@ -108,7 +108,7 @@ For the restraint on int_b, we can add the following to the bottom of the topol_
 ```
 We must open up the R_A.itp and R_B.itp files and manually renumber the left-most column, i. This column will contain the original atom numbers, which confuses GROMACS because position restraint (.itp) files always start with the number 1. So we have to go in and manually change ALL the atom numbers in R_A.itp and R_B.itp to 1, 2, 3 and so on. 
 
-Add the following to the pull.mdp, which can be any pull_.mdp file:
+Add the following to the pull.mdp at the top if it is not already there:
 ```
 define = -DPOSRES_R_A -DPOSRES_R_B
 ```
@@ -124,11 +124,11 @@ After running the simulations, we can extract the COM coordinates of the pull gr
 ```
 $> gmx trajectory -f sim_name.xtc -s sim_name.tpr -n index.ndx -ox pull-coords.xvg -seltype res_com -y yes
 ```
-Select the three pull groups defined earlier (int_a, int_b, and fn) to complete the selection and extraction. Gromacs will output a sim-namef.xvg file with the forces. Python can parse through the data files and after some manipulation, we can plot the force vs extension. Gromacs can also condense the trajectory files for faster viewing in VMD by extracting only the protein:
+Select the two pull groups defined earlier to complete the selection and extraction. Gromacs will output a sim-namef.xvg file with the forces. Python can parse through the data files and after some manipulation, we can plot the force vs extension. Gromacs can also condense the trajectory files for faster viewing in VMD by extracting only the protein:
 ```
 $> gmx trjconv -f sim-name.xtc -s sim-name.tpr -o new-traj.xtc
 ```
-Then selecting option 1 to select the protein. We can then use VMD to load npt.gro and sim-name.xtc and create movies.
+Then selecting option 1 to select the protein. We can then use VMD to load npt.gro and sim-name.xtc to create movies.
 
 Force Distribution Analysis
 ==============
