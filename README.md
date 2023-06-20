@@ -9,7 +9,7 @@ This implementation was run in Ubuntu 20.04. The molecular dynamics software use
 ```
 tar -xvzf gromacs-2020.4.tar.gz
 ```
-Please refer to the gromacs installation guide found in https://manual.gromacs.org/2020.4/install_guide/index.html. Check for Clang by running:
+Please refer to the gromacs installation guide found in https://manual.gromacs.org/2020.4/install-guide/index.html. Check for Clang by running:
 ```
 clang –-version 
 ```
