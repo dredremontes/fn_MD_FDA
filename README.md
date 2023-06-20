@@ -11,7 +11,7 @@ tar -xvzf gromacs-2020.4.tar.gz
 ```
 Please refer to the gromacs installation guide found in https://manual.gromacs.org/2020.4/install_guide/index.html. Check for Clang by running:
 ```
-clang –version 
+clang –-version 
 ```
 to check if Clang is already installed. If not, it can be installed by following the instructions here: https://www.ics.uci.edu/~pattis/common/handouts/macclion/clang.html. Next, download cmake from https://cmake.org/download/. 
 
@@ -38,7 +38,7 @@ gmx pdb2gmx -f fn.pdb -o fn.gro
 Select AMBER99SB-ildn force field and TIP3P. Rotate the molecule, add a box, solvate, and add ions with:
 ```
 gmx editconf -f fn.gro -rotate 0 -25 10 -o fn.gro
-gmx editconf -f fn.gro -o fn.gro -box 12.5 5.0 5.0 -center 4 2.25 2.75
+gmx editconf -f fn.gro -o box.gro -box 12.5 5.0 5.0 -center 4 2.25 2.75
 gmx solvate -cp box.gro -cs spc216.gro -o solv.gro -p topol.top
 gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr
 gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.15
