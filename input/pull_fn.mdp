@@ -61,8 +61,8 @@ pull                    = yes
 pull-ncoords            = 1         ; only one reaction coordinate 
 pull-ngroups            = 2         ; defining three reaction coordinates
 
-pull_group1_name        = 96ILE	 ; pulled FN group 
-pull_group2_name		= 6ARG	 ; fixed FN group
+pull_group1_name        = pull	 ; pulled FN group 
+pull_group2_name		= hold	 ; fixed FN group
 
 : constant velocity simulation
 ;pull_coord1_type        = umbrella      ; harmonic potential

@@ -38,9 +38,17 @@ gmx pdb2gmx -f fn.pdb -o fn.gro
 Select AMBER99SB-ildn force field and TIP3P. Rotate the molecule, add a box, solvate, and add ions with:
 ```
 gmx editconf -f fn.gro -rotate 0 -25 10 -o fn.gro
+```
+```
 gmx editconf -f fn.gro -o box.gro -box 12.5 5.0 5.0 -center 4 2.25 2.75
+```
+```
 gmx solvate -cp box.gro -cs spc216.gro -o solv.gro -p topol.top
+```
+```
 gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr
+```
+```
 gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.15
 ```
 Select the SOL option.
@@ -91,16 +99,16 @@ name 21 hold
 ```
 Create constraints
 ```
-gmx genrestr -f npt.gro -n index.ndx -o R_A.itp
-gmx genrestr -f npt.gro -n index.ndx -o R_B.itp
+gmx genrestr -f npt.gro -n index.ndx -o R_hold.itp
+gmx genrestr -f npt.gro -n index.ndx -o R_pull.itp
 ```
-These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG, we can add the following to the bottom of the posre.itp file:
+These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG (residue 6, Arginine), we can add the following to the bottom of the posre.itp file:
 ```
 #ifdef R_hold
 #include "R_hold.itp"
 #endif
 ```
-For the restraint on 96-ILE, we can add the following to the bottom of the topol_Protein_chain_B.itp file:
+For the restraint on 96-ILE (residue 96, Isoleucine), we can add the following to the bottom of the posre.itp file:
 ```
 #ifdef R_pull
 #include "R_pull.itp"
@@ -110,7 +118,7 @@ We must open up the R_hold.itp file and manually renumber the left-most column, 
 
 Add the following to the pull.mdp at the top if it is not already there:
 ```
-define = -DR_hold -DR_pull
+define = -DPOSRES -DR_hold -DR_pull
 ```
 Running the steered MD.
 ```
