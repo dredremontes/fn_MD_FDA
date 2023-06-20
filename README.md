@@ -35,16 +35,20 @@ If starting from scratch, download the `1fna.pdb` from https://www.rcsb.org/stru
 ```
 gmx pdb2gmx -f fn.pdb -o fn.gro
 ```
-Select AMBER99SB-ildn force field and TIP3P. Rotate the molecule, add a box, solvate, and add ions with:
+Select AMBER99SB-ildn force field and TIP3P. 
+Rotate the molecule
 ```
 gmx editconf -f fn.gro -rotate 0 -25 10 -o fn.gro
 ```
+Add a box
 ```
 gmx editconf -f fn.gro -o box.gro -box 12.5 5.0 5.0 -center 4 2.25 2.75
 ```
+Solvate
 ```
 gmx solvate -cp box.gro -cs spc216.gro -o solv.gro -p topol.top
 ```
+Add ions:
 ```
 gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr
 ```
@@ -59,6 +63,8 @@ Minimization
 NOTE: Minimization can take ~10-20 minutes on a modern laptop depending on how many cores you have. 
 ```
 gmx grompp -f minim.mdp -c solv_ions.gro -p topol.top -o em.tpr
+```
+```
 gmx mdrun -v -deffnm em
 ```
 Energy can be extracted to an xvg file using:
@@ -71,11 +77,15 @@ Equilibration
 NVT:
 ```
 gmx grompp -f nvt.mdp -c em.gro -p topol.top -r em.gro -o nvt.tpr
+```
+```
 gmx mdrun -v -deffnm nvt
 ```
 NPT:
 ```
 gmx grompp -f npt.mdp -c nvt.gro -p topol.top -r nvt.gro -t nvt.cpt -o npt.tpr
+```
+```
 gmx mdrun -v -deffnm npt
 ```
 The RMSD can be calculated with:
@@ -92,14 +102,29 @@ Steered MD
 Define pull groups on fibronectin:
 ```
 gmx make_ndx -f npt.gro
+```
+Type:
+```
 a1-26
+```
+Press enter/return. Type:
+```
 name 20 pull
+```
+Press enter/return. Type:
+```
 a1348-1367
+```
+Press enter/return. Type:
+```
 name 21 hold
 ```
+Press enter/return twice. Press q and then enter to save ang quit. 
 Create constraints
 ```
 gmx genrestr -f npt.gro -n index.ndx -o R_hold.itp
+```
+```
 gmx genrestr -f npt.gro -n index.ndx -o R_pull.itp
 ```
 These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG (residue 6, Arginine), we can add the following to the bottom of the posre.itp file:
