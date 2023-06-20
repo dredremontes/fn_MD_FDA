@@ -37,8 +37,8 @@ gmx pdb2gmx -f fn.pdb -o fn.gro
 ```
 Select AMBER99SB-ildn force field and TIP3P. Rotate the molecule, add a box, solvate, and add ions with:
 ```
-gmx_fda editconf -f fn.gro -rotate 0 -25 10 -o fn.gro
-gmx_fda editconf -f fn.gro -o fn.gro -box 12.5 5.0 5.0 -center 4 2.25 2.75
+gmx editconf -f fn.gro -rotate 0 -25 10 -o fn.gro
+gmx editconf -f fn.gro -o fn.gro -box 12.5 5.0 5.0 -center 4 2.25 2.75
 gmx solvate -cp box.gro -cs spc216.gro -o solv.gro -p topol.top
 gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr
 gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.15
