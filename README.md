@@ -5,7 +5,7 @@ This is an instruction manual for running steered a molecular dynamics simulatio
 
 Downloading Gromacs
 ===========
-This implementation was run in Ubuntu 20.04. The molecular dynamics software used was Gromacs 2020.4, which can be downloaded from https://ftp.gromacs.org/pub/gromacs-2020.4.tar.gz and is also available in the `./fn_MD_FDA/.` The source code can be downloaded from https://manual.gromacs/org/2020.4/download.html. The tarball can be unpacked using:
+This implementation was run in Ubuntu 20.04. The molecular dynamics software used was Gromacs 2020.4, which can be downloaded from https://ftp.gromacs.org/pub/gromacs/ and is also available in the `./fn_MD_FDA/.` The source code can be downloaded from https://manual.gromacs.org/2020.4/download.html. The tarball can be unpacked using:
 ```
 tar -xvzf gromacs-2020.4.tar.gz
 ```
