@@ -7,11 +7,11 @@ Downloading Gromacs
 ===========
 This implementation was run in Ubuntu 20.04. The molecular dynamics software used was Gromacs 2020.4, which can be downloaded from https://ftp.gromacs.org/pub/gromacs-2020.4.tar.gz and is also available in the `./fn_MD_FDA/.` The source code can be downloaded from https://manual.gromacs/org/2020.4/download.html. The tarball can be unpacked using:
 ```
-$> tar -xvzf gromacs-2020.4.tar.gz
+tar -xvzf gromacs-2020.4.tar.gz
 ```
 Please refer to the gromacs installation guide found in https://manual.gromacs.org/2020.4/install_guide/index.html. Check for Clang by running:
 ```
-$> clang –version 
+clang –version 
 ```
 to check if Clang is already installed. If not, it can be installed by following the instructions here: https://www.ics.uci.edu/~pattis/common/handouts/macclion/clang.html. Next, download cmake from https://cmake.org/download/. 
 
