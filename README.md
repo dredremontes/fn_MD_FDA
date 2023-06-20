@@ -148,6 +148,8 @@ define = -DPOSRES -DR_hold -DR_pull
 Running the steered MD.
 ```
 grompp -f pull_fn.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt.cpt -o pull_fn.tpr
+```
+```
 gmx mdrun -v -deffnm pull -s pull_fn.tpr -pf pullforce.xvg -px pullx.xvg
 ```
 
