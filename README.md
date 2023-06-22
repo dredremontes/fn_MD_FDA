@@ -147,7 +147,7 @@ define = -DPOSRES -DR_hold -DR_pull
 ```
 Running the steered MD.
 ```
-grompp -f pull_fn.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt.cpt -o pull_fn.tpr
+gmx grompp -f pull_fn.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt.cpt -o pull_fn.tpr
 ```
 ```
 gmx mdrun -v -deffnm pull -s pull_fn.tpr -pf pullforce.xvg -px pullx.xvg
@@ -155,7 +155,7 @@ gmx mdrun -v -deffnm pull -s pull_fn.tpr -pf pullforce.xvg -px pullx.xvg
 
 Force Distribution Analysis
 ==============
-To run the force distribution analysis, we used the input file found in `./fn_MD_FDA/input/input.pfi`, the steered MD trajectory of choice, and gromacs-fda from: https://github.com/HITS-MBM/gromacs-fda.
+To run the force distribution analysis, gromacs-fda will need to be installed from https://github.com/HITS-MBM/gromacs-fda. Use the input file found in `./fn_MD_FDA/input/input.pfi` and the steered MD trajectory of choice: 
 ```
 gmx_fda mdrun -nt 1 -rerun pull_fn.xtc -pfi input.pfi -pfn index.ndx -s pull_fn.tpr -psr output.psr
 ```
