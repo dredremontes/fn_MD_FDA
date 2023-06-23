@@ -119,8 +119,8 @@ Press enter/return. This selected the residue 6-ARG (Arginine) as the amino acid
 ```
 name 20 hold
 ```
-Press enter/return twice. Press q and then enter to save and quit. 
-Create constraints
+Press enter/return twice. This selected the residue 96-ILE (Isoleucine) as the hold group. Press q and then enter to save and quit. 
+Next, we create constraints
 ```
 gmx genrestr -f npt.gro -n index.ndx -o R_pull.itp
 ```
@@ -130,7 +130,7 @@ gmx genrestr -f npt.gro -n index.ndx -o R_hold.itp
 ```
 Type the number next to the hold group and press enter.
 
-These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG (residue 6, Arginine), we can add the following to the bottom of the posre.itp file:
+These position restraints also need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG (residue 6, Arginine), we can add the following to the bottom of the posre.itp file:
 ```
 #ifdef R_hold
 #include "R_hold.itp"
