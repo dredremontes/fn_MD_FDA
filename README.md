@@ -107,33 +107,36 @@ Type:
 ```
 a1-26
 ```
-Press enter/return. Type:
+Press enter/return. Check to see the next available number slot. For example, if the group number stops at 18, use the next available number, which would be 19:
 ```
-name 20 pull
+name 19 pull
 ```
 Press enter/return. Type:
 ```
 a1348-1367
 ```
-Press enter/return. Type:
+Press enter/return. This selected the residue 6-ARG (Arginine) as the amino acid group to pull, we now have to select the other amino acid group to hold. Type:
 ```
-name 21 hold
+name 20 hold
 ```
-Press enter/return twice. Press q and then enter to save ang quit. 
+Press enter/return twice. Press q and then enter to save and quit. 
 Create constraints
-```
-gmx genrestr -f npt.gro -n index.ndx -o R_hold.itp
-```
 ```
 gmx genrestr -f npt.gro -n index.ndx -o R_pull.itp
 ```
+Type the number next to the pull group and press enter.
+```
+gmx genrestr -f npt.gro -n index.ndx -o R_hold.itp
+```
+Type the number next to the hold group and press enter.
+
 These position restraints need to be defined in their respective protein chain .itp files. For the restraint on 6-ARG (residue 6, Arginine), we can add the following to the bottom of the posre.itp file:
 ```
 #ifdef R_hold
 #include "R_hold.itp"
 #endif
 ```
-For the restraint on 96-ILE (residue 96, Isoleucine), we can add the following to the bottom of the posre.itp file:
+For the restraint on the hold group, 96-ILE (residue 96, Isoleucine), we can add the following to the bottom of the posre.itp file:
 ```
 #ifdef R_pull
 #include "R_pull.itp"
