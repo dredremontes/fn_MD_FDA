@@ -143,7 +143,7 @@ We must open up the R_hold.itp file and manually renumber the left-most column, 
 
 Add the following to the pull.mdp at the top if it is not already there:
 ```
-define = -DPOSRES -DR_hold -DR_pull
+define = -DR_hold -DR_pull
 ```
 Running the steered MD.
 ```
