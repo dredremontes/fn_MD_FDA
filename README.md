@@ -174,7 +174,7 @@ Now go to `Extensions > VMD Preferences` and go to the Custom tab. Click `New` a
 source "C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"
 package require pf_loaduser
 ```
-Click "Update" and then "Pull All Settings to VMD". Close out of the VMD Preferences Panel. 
+Click "Update" and then "Push All Settings to VMD". Close out of the VMD Preferences Panel. 
 
 Now go to `Extensions > TkConsole` and type `pbc box` and hit `enter` to display the simulation cell. Now, in the TkConsole, using cd and ls, navigate to the folder containing the cloned repository and find the output.psr file in `path/to/fn_MD_FDA/output/`. For my local PC, I use `cd "C:/Users/andre/Documents/GitHub/fn_MD_FDA/output"`. Remove the first frame by typing the command:
 ```
