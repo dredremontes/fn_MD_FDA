@@ -169,9 +169,9 @@ Download and open VMD 1.9.4a https://www.ks.uiuc.edu/Development/Download/downlo
 
 Go to `Graphics > Representations` and under `Drawing Method` select `NewCartoon`. The cartoon representation should be displayed now and the water and ions should be hidden. 
 
-Now go to `Extensions > VMD Preferences` and go to the Custom tab. Click `New` and name it "pf_loaduser". In the "code" box, write the following lines:
+Now go to `Extensions > VMD Preferences` and go to the Custom tab. Click `New` and name it "pf_loaduser". In the "code" box, write the following lines, but replacing the "path/to/pf_loaduser.tcl" with the location of the `pf_loaduser.tcl` script. This script is available in the `fn_MD_FDA` directory. In my local PC, I moved the `pf_loaduser.tcl` file to `"C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"`.
 ```
-source "C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"
+source "path/to/pf_loaduser.tcl"
 package require pf_loaduser
 ```
 Click "Update" and then "Push All Settings to VMD". Close out of the VMD Preferences Panel. 
@@ -180,11 +180,11 @@ Now go to `Extensions > TkConsole` and type `pbc box` and hit `enter` to display
 ```
 animate delete beg 0 end 0 skip 0 0
 ```
-Source the pf_loaduser.tcl file in the TKConsole:
+Source the pf_loaduser.tcl file in the TKConsole, replacing `path/to/pf_loaduser.tcl` with the directory that contains your `pf_loaduser.tcl` file:
 ```
-source "C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"
+source "path/to/pf_loaduser.tcl"
 ```
-Load the pf_loaduser file:
+Load the pf_loaduser script:
 ```
 package require pf_loaduser
 ```
