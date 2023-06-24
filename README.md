@@ -153,7 +153,7 @@ Running the steered MD.
 gmx grompp -f pull_fn.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt.cpt -o pull_fn.tpr
 ```
 ```
-gmx mdrun -v -deffnm pull -s pull_fn.tpr -pf pullforce.xvg -px pullx.xvg
+gmx mdrun -v -deffnm pull_fn -s pull_fn.tpr -pf pullforce.xvg -px pullx.xvg
 ```
 
 Force Distribution Analysis
@@ -176,15 +176,20 @@ package require pf_loaduser
 ```
 Click "Update" and then "Pull All Settings to VMD". Close out of the VMD Preferences Panel. 
 
-Now go to `Extensions > TkConsole` and type `pbc box` and hit `enter` to display the simulation cell. Now, in the TkConsole, using cd and ls, navigate to the folder containing the cloned repository and find the output.psr file in `path/to/fn_MD_FDA/output/`. For my local PC, I use `cd "C:/Users/andre/Documents/GitHub/fn_MD_FDA/output"`. Now run the following commands to remove the first frame and load the FDA results onto the trajectory:
+Now go to `Extensions > TkConsole` and type `pbc box` and hit `enter` to display the simulation cell. Now, in the TkConsole, using cd and ls, navigate to the folder containing the cloned repository and find the output.psr file in `path/to/fn_MD_FDA/output/`. For my local PC, I use `cd "C:/Users/andre/Documents/GitHub/fn_MD_FDA/output"`. Remove the first frame by typing the command:
 ```
 animate delete beg 0 end 0 skip 0 0
-pf_loaduser "output.psr" true 1 BWR
 ```
-If you get an error, you may potentially need to source the pf_loaduser.tcl in the TkConsole like so:  
+Source the pf_loaduser.tcl file in the TKConsole:
 ```
 source "C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"
+```
+Load the pf_loaduser file:
+```
 package require pf_loaduser
 ```
-
+The following command will overlay the FDA results onto the molecule:
+```
+pf_loaduser "output.psr" true 1 BWR
+```
 The TkConsole should print out "now loading per-residue data" and after a few seconds to a minute, the results should be shown on the molecule itself. You can scroll through the trajectory and see how the different regions within the fibronectin beta sheets activate to resist the unwinding. The final video can be seen in `fn_FDA_traj.mp4`.

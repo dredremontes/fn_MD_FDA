@@ -1,0 +1,17 @@
+# This file was created Fri Jun 23 16:43:04 2023
+# Created by:
+#    :-) GROMACS - gmx mdrun, 2020.4-dev-20201029-4b5790511-dirty-unknown (-:
+# 
+# Executable:   /home/amontes/gromacs-fda/build/bin/gmx_fda
+# Data prefix:  /home/amontes/gromacs-fda/build (source tree)
+# Working dir:  /mnt/c/Users/andre/Documents/GitHub/fn_MD_FDA/fda_run
+# Command line:
+#   gmx_fda mdrun -nt 1 -rerun pull_fn.xtc -pfi input.pfi -pfn index.ndx -s pull_fn.tpr -psr output.psr
+# gmx mdrun is part of G R O M A C S:
+#
+# Gyas ROwers Mature At Cryogenic Speed
+#
+@    title "Pull COM"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "Position (nm)"
+@TYPE xy
