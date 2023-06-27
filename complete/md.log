@@ -1,0 +1,2905 @@
+    :-) GROMACS - gmx mdrun, 2020.4-dev-20201029-4b5790511-dirty-unknown (-:
+
+                            GROMACS is written by:
+     Emile Apol      Rossen Apostolov      Paul Bauer     Herman J.C. Berendsen
+    Par Bjelkmar      Christian Blau   Viacheslav Bolnykh     Kevin Boyd    
+ Aldert van Buuren   Rudi van Drunen     Anton Feenstra       Alan Gray     
+  Gerrit Groenhof     Anca Hamuraru    Vincent Hindriksen  M. Eric Irrgang  
+  Aleksei Iupinov   Christoph Junghans     Joe Jordan     Dimitrios Karkoulis
+    Peter Kasson        Jiri Kraus      Carsten Kutzner      Per Larsson    
+  Justin A. Lemkul    Viveca Lindahl    Magnus Lundborg     Erik Marklund   
+    Pascal Merz     Pieter Meulenhoff    Teemu Murtola       Szilard Pall   
+    Sander Pronk      Roland Schulz      Michael Shirts    Alexey Shvetsov  
+   Alfons Sijbers     Peter Tieleman      Jon Vincent      Teemu Virolainen 
+ Christian Wennberg    Maarten Wolf      Artem Zhmurov   
+                           and the project leaders:
+        Mark Abraham, Berk Hess, Erik Lindahl, and David van der Spoel
+
+Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+Copyright (c) 2001-2019, The GROMACS development team at
+Uppsala University, Stockholm University and
+the Royal Institute of Technology, Sweden.
+check out http://www.gromacs.org for more information.
+
+GROMACS is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either version 2.1
+of the License, or (at your option) any later version.
+
+GROMACS:      gmx mdrun, version 2020.4-dev-20201029-4b5790511-dirty-unknown
+Executable:   /home/amontes/gromacs-fda/build/bin/gmx_fda
+Data prefix:  /home/amontes/gromacs-fda/build (source tree)
+Working dir:  /mnt/c/Users/andre/Documents/GitHub/fn_new/input
+Process ID:   67
+Command line:
+  gmx_fda mdrun -nt 1 -rerun pull_fn.xtc -pfi input.pfi -pfn index.ndx -s pull_fn.tpr -psr output.psr
+
+GROMACS version:    2020.4-dev-20201029-4b5790511-dirty-unknown
+GIT SHA1 hash:      4b5790511bf683ca204798add00b28138b3c701c (dirty)
+Branched from:      unknown
+Precision:          single
+Memory model:       64 bit
+MPI library:        thread_mpi
+OpenMP support:     enabled (GMX_OPENMP_MAX_THREADS = 64)
+GPU support:        disabled
+SIMD instructions:  NONE
+FFT library:        fftw-3.3.8
+RDTSCP usage:       enabled
+TNG support:        enabled
+Hwloc support:      hwloc-2.1.0
+Tracing support:    disabled
+C compiler:         /usr/bin/cc GNU 9.3.0
+C compiler flags:   -Wall -Wno-unused -Wunused-value -Wunused-parameter -Wextra -Wno-missing-field-initializers -Wno-sign-compare -Wpointer-arith -Wundef -Werror=stringop-truncation -fexcess-precision=fast -funroll-all-loops -Wno-array-bounds -O3 -DNDEBUG
+C++ compiler:       /usr/bin/c++ GNU 9.3.0
+C++ compiler flags: -Wall -Wextra -Wno-missing-field-initializers -Wpointer-arith -Wmissing-declarations -Wundef -Wstringop-truncation -fexcess-precision=fast -funroll-all-loops -Wno-array-bounds -fopenmp -O3 -DNDEBUG
+
+
+Running on 1 node with total 6 cores, 12 logical cores
+Hardware detected:
+  CPU info:
+    Vendor: Intel
+    Brand:  Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+    Family: 6   Model: 158   Stepping: 10
+    Features: aes apic avx avx2 clfsh cmov cx8 cx16 f16c fma htt intel lahf mmx msr nonstop_tsc pcid pclmuldq pdcm pdpe1gb popcnt pse rdrnd rdtscp sse2 sse3 sse4.1 sse4.2 ssse3 tdt x2apic
+  Hardware topology: Basic
+    Sockets, cores, and logical processors:
+      Socket  0: [   0   1] [   2   3] [   4   5] [   6   7] [   8   9] [  10  11]
+
+Highest SIMD level requested by all nodes in run: AVX2_256
+SIMD instructions selected at compile time:       None
+This program was compiled for different hardware than you are running on,
+which could influence performance.
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+M. J. Abraham, T. Murtola, R. Schulz, S. Páll, J. C. Smith, B. Hess, E.
+Lindahl
+GROMACS: High performance molecular simulations through multi-level
+parallelism from laptops to supercomputers
+SoftwareX 1 (2015) pp. 19-25
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Páll, M. J. Abraham, C. Kutzner, B. Hess, E. Lindahl
+Tackling Exascale Software Challenges in Molecular Dynamics Simulations with
+GROMACS
+In S. Markidis & E. Laure (Eds.), Solving Software Challenges for Exascale 8759 (2015) pp. 3-27
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Pronk, S. Páll, R. Schulz, P. Larsson, P. Bjelkmar, R. Apostolov, M. R.
+Shirts, J. C. Smith, P. M. Kasson, D. van der Spoel, B. Hess, and E. Lindahl
+GROMACS 4.5: a high-throughput and highly parallel open source molecular
+simulation toolkit
+Bioinformatics 29 (2013) pp. 845-54
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+B. Hess and C. Kutzner and D. van der Spoel and E. Lindahl
+GROMACS 4: Algorithms for highly efficient, load-balanced, and scalable
+molecular simulation
+J. Chem. Theory Comput. 4 (2008) pp. 435-447
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+D. van der Spoel, E. Lindahl, B. Hess, G. Groenhof, A. E. Mark and H. J. C.
+Berendsen
+GROMACS: Fast, Flexible and Free
+J. Comp. Chem. 26 (2005) pp. 1701-1719
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+E. Lindahl and B. Hess and D. van der Spoel
+GROMACS 3.0: A package for molecular simulation and trajectory analysis
+J. Mol. Mod. 7 (2001) pp. 306-317
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+H. J. C. Berendsen, D. van der Spoel and R. van Drunen
+GROMACS: A message-passing parallel molecular dynamics implementation
+Comp. Phys. Comm. 91 (1995) pp. 43-56
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE CITE THE DOI FOR THIS VERSION OF GROMACS ++++
+https://doi.org/10.5281/zenodo.4054979
+-------- -------- --- Thank You --- -------- --------
+
+Input Parameters:
+   integrator                     = md
+   tinit                          = 0
+   dt                             = 0.002
+   nsteps                         = 200000
+   init-step                      = 0
+   simulation-part                = 1
+   comm-mode                      = Linear
+   nstcomm                        = 1000
+   bd-fric                        = 0
+   ld-seed                        = 1936413683
+   emtol                          = 10
+   emstep                         = 0.01
+   niter                          = 20
+   fcstep                         = 0
+   nstcgsteep                     = 1000
+   nbfgscorr                      = 10
+   rtpi                           = 0.05
+   nstxout                        = 1000
+   nstvout                        = 1000
+   nstfout                        = 1000
+   nstlog                         = 1000
+   nstcalcenergy                  = 100
+   nstenergy                      = 1000
+   nstxout-compressed             = 1000
+   compressed-x-precision         = 1000
+   cutoff-scheme                  = Verlet
+   nstlist                        = 20
+   pbc                            = xyz
+   periodic-molecules             = false
+   verlet-buffer-tolerance        = 0.005
+   rlist                          = 1.421
+   coulombtype                    = PME
+   coulomb-modifier               = Potential-shift
+   rcoulomb-switch                = 0
+   rcoulomb                       = 1.4
+   epsilon-r                      = 1
+   epsilon-rf                     = inf
+   vdw-type                       = Cut-off
+   vdw-modifier                   = Potential-shift
+   rvdw-switch                    = 0
+   rvdw                           = 1.4
+   DispCorr                       = EnerPres
+   table-extension                = 1
+   fourierspacing                 = 0.12
+   fourier-nx                     = 128
+   fourier-ny                     = 52
+   fourier-nz                     = 52
+   pme-order                      = 4
+   ewald-rtol                     = 1e-05
+   ewald-rtol-lj                  = 0.001
+   lj-pme-comb-rule               = Geometric
+   ewald-geometry                 = 0
+   epsilon-surface                = 0
+   tcoupl                         = Nose-Hoover
+   nsttcouple                     = 20
+   nh-chain-length                = 1
+   print-nose-hoover-chain-variables = false
+   pcoupl                         = No
+   pcoupltype                     = Isotropic
+   nstpcouple                     = -1
+   tau-p                          = 1
+   compressibility (3x3):
+      compressibility[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      compressibility[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      compressibility[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   ref-p (3x3):
+      ref-p[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      ref-p[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      ref-p[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   refcoord-scaling               = No
+   posres-com (3):
+      posres-com[0]= 0.00000e+00
+      posres-com[1]= 0.00000e+00
+      posres-com[2]= 0.00000e+00
+   posres-comB (3):
+      posres-comB[0]= 0.00000e+00
+      posres-comB[1]= 0.00000e+00
+      posres-comB[2]= 0.00000e+00
+   QMMM                           = false
+   QMconstraints                  = 0
+   QMMMscheme                     = 0
+   MMChargeScaleFactor            = 1
+qm-opts:
+   ngQM                           = 0
+   constraint-algorithm           = Lincs
+   continuation                   = true
+   Shake-SOR                      = false
+   shake-tol                      = 0.0001
+   lincs-order                    = 4
+   lincs-iter                     = 1
+   lincs-warnangle                = 30
+   nwall                          = 0
+   wall-type                      = 9-3
+   wall-r-linpot                  = -1
+   wall-atomtype[0]               = -1
+   wall-atomtype[1]               = -1
+   wall-density[0]                = 0
+   wall-density[1]                = 0
+   wall-ewald-zfac                = 3
+   pull                           = true
+   pull-cylinder-r                = 1.5
+   pull-constr-tol                = 1e-06
+   pull-print-COM                 = false
+   pull-print-ref-value           = false
+   pull-print-components          = false
+   pull-nstxout                   = 50
+   pull-nstfout                   = 50
+   pull-pbc-ref-prev-step-com     = false
+   pull-xout-average              = false
+   pull-fout-average              = false
+   pull-ngroups                   = 3
+   pull-group 0:
+     atom: not available
+     weight: not available
+     pbcatom                        = -1
+   pull-group 1:
+     atom (1):
+        atom[0]=1419
+     weight: not available
+     pbcatom                        = -1
+   pull-group 2:
+     atom (1):
+        atom[0]=4
+     weight: not available
+     pbcatom                        = -1
+   pull-ncoords                   = 1
+   pull-coord 0:
+   type                           = constant-force
+   geometry                       = direction-periodic
+   group[0]                       = 1
+   group[1]                       = 2
+   dim (3):
+      dim[0]=1
+      dim[1]=0
+      dim[2]=0
+   origin (3):
+      origin[0]= 0.00000e+00
+      origin[1]= 0.00000e+00
+      origin[2]= 0.00000e+00
+   vec (3):
+      vec[0]= 1.00000e+00
+      vec[1]= 0.00000e+00
+      vec[2]= 0.00000e+00
+   start                          = false
+   init                           = 0
+   rate                           = 0
+   k                              = 602.4
+   kB                             = 602.4
+   awh                            = false
+   rotation                       = false
+   interactiveMD                  = false
+   disre                          = No
+   disre-weighting                = Conservative
+   disre-mixed                    = false
+   dr-fc                          = 1000
+   dr-tau                         = 0
+   nstdisreout                    = 100
+   orire-fc                       = 0
+   orire-tau                      = 0
+   nstorireout                    = 100
+   free-energy                    = no
+   cos-acceleration               = 0
+   deform (3x3):
+      deform[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   simulated-tempering            = false
+   swapcoords                     = no
+   userint1                       = 0
+   userint2                       = 0
+   userint3                       = 0
+   userint4                       = 0
+   userreal1                      = 0
+   userreal2                      = 0
+   userreal3                      = 0
+   userreal4                      = 0
+   applied-forces:
+     electric-field:
+       x:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       y:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       z:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+     density-guided-simulation:
+       active                     = false
+       group                      = protein
+       similarity-measure         = inner-product
+       atom-spreading-weight      = unity
+       force-constant             = 1e+09
+       gaussian-transform-spreading-width = 0.2
+       gaussian-transform-spreading-range-in-multiples-of-width = 4
+       reference-density-filename = reference.mrc
+       nst                        = 1
+       normalize-densities        = true
+       adaptive-force-scaling     = false
+       adaptive-force-scaling-time-constant = 4
+grpopts:
+   nrdf:      3585.9      102735
+   ref-t:         310         310
+   tau-t:           1           1
+annealing:          No          No
+annealing-npoints:           0           0
+   acc:	           0           0           0
+   nfreeze:           N           N           N
+   energygrp-flags[  0]: 0
+
+Rerun trajectory contains velocities. Rerun does only evaluate potential energy and forces. The velocities will be ignored.
+Changing nstlist from 20 to 100, rlist from 1.421 to 1.535
+
+
+Using 1 MPI thread
+
+Non-default thread affinity set, disabling internal thread affinity
+
+Using 1 OpenMP thread 
+
+System total charge: 0.000
+Will do PME sum in reciprocal space for electrostatic interactions.
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen 
+A smooth particle mesh Ewald method
+J. Chem. Phys. 103 (1995) pp. 8577-8592
+-------- -------- --- Thank You --- -------- --------
+
+Using a Gaussian width (1/beta) of 0.448228 nm for Ewald
+Potential shift: LJ r^-12: -1.764e-02 r^-6: -1.328e-01, Ewald -7.143e-06
+Initialized non-bonded Ewald tables, spacing: 1.10e-03 size: 1270
+
+Generated table with 1267 data points for 1-4 COUL.
+Tabscale = 500 points/nm
+Generated table with 1267 data points for 1-4 LJ6.
+Tabscale = 500 points/nm
+Generated table with 1267 data points for 1-4 LJ12.
+Tabscale = 500 points/nm
+
+Using plain C 4x4 nonbonded short-range kernels
+
+WARNING: Using the slow plain C kernels. This should
+not happen during routine usage on supported platforms.
+
+Using a dual 4x4 pair-list setup updated with dynamic pruning:
+  outer list: updated every 100 steps, buffer 0.135 nm, rlist 1.535 nm
+  inner list: updated every  13 steps, buffer 0.001 nm, rlist 1.401 nm
+At tolerance 0.005 kJ/mol/ps per atom, equivalent classical 1x1 list would be:
+  outer list: updated every 100 steps, buffer 0.291 nm, rlist 1.691 nm
+  inner list: updated every  13 steps, buffer 0.052 nm, rlist 1.452 nm
+
+Using Lorentz-Berthelot Lennard-Jones combination rule
+
+Long Range LJ corr.: <C6> 2.9182e-04
+
+
+Will apply potential COM pulling
+with 1 pull coordinate and 2 groups
+Pull group 1:     1 atoms, mass    12.010
+Pull group 2:     1 atoms, mass    12.010
+
+Initializing LINear Constraint Solver
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+B. Hess and H. Bekker and H. J. C. Berendsen and J. G. E. M. Fraaije
+LINCS: A Linear Constraint Solver for molecular simulations
+J. Comp. Chem. 18 (1997) pp. 1463-1472
+-------- -------- --- Thank You --- -------- --------
+
+The number of constraints is 704
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Miyamoto and P. A. Kollman
+SETTLE: An Analytical Version of the SHAKE and RATTLE Algorithms for Rigid
+Water Models
+J. Comp. Chem. 13 (1992) pp. 952-962
+-------- -------- --- Thank You --- -------- --------
+
+
+Note that it is planned that the command gmx mdrun -rerun will be available in a different form in a future version of GROMACS, e.g. gmx rerun -f.
+There are: 52749 Atoms
+
+Started mdrun on rank 0 Mon Jun 26 17:04:49 2023
+
+
+Simulations has constraints. Rerun does not recalculate constraints.
+
+Rerun does not report kinetic energy, total energy, temperature, virial and pressure.
+           Step           Time
+              0        0.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.14161e+03    3.28656e+03    3.63540e+03    1.93570e+02    1.33286e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03903e+04    1.00185e+05   -2.30002e+03   -8.45124e+05    1.65779e+03
+ Position Rest.   COM Pull En.      Potential
+    1.13687e-10   -2.43731e+03   -7.28038e+05
+
+           Step           Time
+           1000        2.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28577e+03    3.37782e+03    3.65954e+03    2.35445e+02    1.24731e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05231e+04    1.01175e+05   -2.30002e+03   -8.43189e+05    1.62634e+03
+ Position Rest.   COM Pull En.      Potential
+    4.83310e+01   -2.84815e+03   -7.25158e+05
+
+           Step           Time
+           2000        4.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24686e+03    3.33831e+03    3.67299e+03    1.76624e+02    1.32512e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07132e+04    9.99925e+04   -2.30002e+03   -8.45454e+05    1.59487e+03
+ Position Rest.   COM Pull En.      Potential
+    3.16571e+01   -2.88670e+03   -7.28548e+05
+
+           Step           Time
+           3000        6.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28511e+03    3.20598e+03    3.55367e+03    1.70102e+02    1.37212e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06433e+04    9.94343e+04   -2.30002e+03   -8.43611e+05    1.62051e+03
+ Position Rest.   COM Pull En.      Potential
+    2.08860e+01   -2.85116e+03   -7.27456e+05
+
+           Step           Time
+           4000        8.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23530e+03    3.48263e+03    3.60306e+03    1.96763e+02    1.25540e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04814e+04    1.00215e+05   -2.30002e+03   -8.44631e+05    1.65295e+03
+ Position Rest.   COM Pull En.      Potential
+    3.15420e+01   -2.88971e+03   -7.27667e+05
+
+           Step           Time
+           5000       10.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.36333e+03    3.34371e+03    3.59862e+03    1.70193e+02    1.29174e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05398e+04    9.78742e+04   -2.30002e+03   -8.41366e+05    1.62514e+03
+ Position Rest.   COM Pull En.      Potential
+    2.65340e+01   -2.93911e+03   -7.26772e+05
+
+           Step           Time
+           6000       12.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.18502e+03    3.09331e+03    3.64063e+03    1.84412e+02    1.34173e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06531e+04    1.00881e+05   -2.30002e+03   -8.44794e+05    1.51379e+03
+ Position Rest.   COM Pull En.      Potential
+    1.47210e+01   -2.94031e+03   -7.27526e+05
+
+           Step           Time
+           7000       14.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19596e+03    3.25295e+03    3.66905e+03    1.79219e+02    1.29350e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04374e+04    1.02120e+05   -2.30002e+03   -8.47777e+05    1.56839e+03
+ Position Rest.   COM Pull En.      Potential
+    1.56340e+01   -2.99152e+03   -7.29337e+05
+
+           Step           Time
+           8000       16.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.12607e+03    3.41674e+03    3.61052e+03    1.89011e+02    1.30179e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05998e+04    1.00913e+05   -2.30002e+03   -8.45889e+05    1.62725e+03
+ Position Rest.   COM Pull En.      Potential
+    7.42201e+00   -2.99815e+03   -7.28396e+05
+
+           Step           Time
+           9000       18.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21528e+03    3.31046e+03    3.63252e+03    1.82628e+02    1.28114e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05947e+04    9.85928e+04   -2.30002e+03   -8.41690e+05    1.59362e+03
+ Position Rest.   COM Pull En.      Potential
+    3.13960e+01   -3.06200e+03   -7.26618e+05
+
+           Step           Time
+          10000       20.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.14692e+03    3.40731e+03    3.57477e+03    1.69187e+02    1.31747e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06510e+04    1.02627e+05   -2.30002e+03   -8.48035e+05    1.60224e+03
+ Position Rest.   COM Pull En.      Potential
+    1.06420e+01   -3.06561e+03   -7.28895e+05
+
+           Step           Time
+          11000       22.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16125e+03    3.21362e+03    3.55383e+03    1.66014e+02    1.32084e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05739e+04    9.97700e+04   -2.30002e+03   -8.45576e+05    1.62024e+03
+ Position Rest.   COM Pull En.      Potential
+    1.35690e+01   -3.11923e+03   -7.29602e+05
+
+           Step           Time
+          12000       24.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22847e+03    3.38774e+03    3.61098e+03    1.53593e+02    1.27214e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05049e+04    1.02184e+05   -2.30002e+03   -8.48272e+05    1.64253e+03
+ Position Rest.   COM Pull En.      Potential
+    2.68691e+01   -3.13429e+03   -7.29695e+05
+
+           Step           Time
+          13000       26.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23555e+03    3.34319e+03    3.66610e+03    1.76766e+02    1.25813e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04770e+04    1.01654e+05   -2.30002e+03   -8.47141e+05    1.58504e+03
+ Position Rest.   COM Pull En.      Potential
+    3.96290e+01   -3.17525e+03   -7.29181e+05
+
+           Step           Time
+          14000       28.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.34035e+03    3.25322e+03    3.61055e+03    1.50004e+02    1.29766e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03635e+04    9.95032e+04   -2.30002e+03   -8.44162e+05    1.63065e+03
+ Position Rest.   COM Pull En.      Potential
+    1.34050e+01   -3.16621e+03   -7.28466e+05
+
+           Step           Time
+          15000       30.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17942e+03    3.47188e+03    3.68860e+03    2.03588e+02    1.32140e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06387e+04    1.00924e+05   -2.30002e+03   -8.47210e+05    1.58792e+03
+ Position Rest.   COM Pull En.      Potential
+    1.59530e+01   -3.19272e+03   -7.29671e+05
+
+           Step           Time
+          16000       32.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20681e+03    3.54357e+03    3.57738e+03    1.76487e+02    1.27429e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05826e+04    1.01088e+05   -2.30002e+03   -8.46224e+05    1.57323e+03
+ Position Rest.   COM Pull En.      Potential
+    1.39410e+01   -3.24392e+03   -7.28732e+05
+
+           Step           Time
+          17000       34.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21851e+03    3.25475e+03    3.66612e+03    1.56932e+02    1.30811e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06538e+04    9.96868e+04   -2.30002e+03   -8.45305e+05    1.57308e+03
+ Position Rest.   COM Pull En.      Potential
+    1.64030e+01   -3.23188e+03   -7.29302e+05
+
+           Step           Time
+          18000       36.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17217e+03    3.34626e+03    3.62095e+03    1.82698e+02    1.32971e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04323e+04    1.00498e+05   -2.30002e+03   -8.45390e+05    1.60813e+03
+ Position Rest.   COM Pull En.      Potential
+    2.14700e+01   -3.29754e+03   -7.28776e+05
+
+           Step           Time
+          19000       38.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.14188e+03    3.17709e+03    3.61691e+03    1.61472e+02    1.30498e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06225e+04    1.00456e+05   -2.30002e+03   -8.46075e+05    1.63555e+03
+ Position Rest.   COM Pull En.      Potential
+    2.26560e+01   -3.31501e+03   -7.29550e+05
+
+           Step           Time
+          20000       40.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16600e+03    3.16415e+03    3.64247e+03    2.18843e+02    1.31587e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05346e+04    1.01009e+05   -2.30002e+03   -8.45874e+05    1.64257e+03
+ Position Rest.   COM Pull En.      Potential
+    2.77660e+01   -3.36139e+03   -7.28815e+05
+
+           Step           Time
+          21000       42.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20997e+03    3.31854e+03    3.63515e+03    1.88006e+02    1.31872e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07087e+04    1.02068e+05   -2.30002e+03   -8.47038e+05    1.59743e+03
+ Position Rest.   COM Pull En.      Potential
+    5.14503e+00   -3.33790e+03   -7.28626e+05
+
+           Step           Time
+          22000       44.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.31696e+03    3.24324e+03    3.55248e+03    1.52153e+02    1.27070e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04408e+04    1.01041e+05   -2.30002e+03   -8.44615e+05    1.57166e+03
+ Position Rest.   COM Pull En.      Potential
+    1.08560e+01   -3.37224e+03   -7.27687e+05
+
+           Step           Time
+          23000       46.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.34976e+03    3.34414e+03    3.53086e+03    1.68480e+02    1.30452e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05580e+04    1.01326e+05   -2.30002e+03   -8.47724e+05    1.67068e+03
+ Position Rest.   COM Pull En.      Potential
+    8.59800e+00   -3.37886e+03   -7.30142e+05
+
+           Step           Time
+          24000       48.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23712e+03    3.23168e+03    3.56840e+03    1.94162e+02    1.28940e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04289e+04    1.01629e+05   -2.30002e+03   -8.46344e+05    1.57265e+03
+ Position Rest.   COM Pull En.      Potential
+    8.06599e+00   -3.40537e+03   -7.28889e+05
+
+           Step           Time
+          25000       50.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.34935e+03    3.31671e+03    3.59994e+03    2.05775e+02    1.26656e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04979e+04    1.01265e+05   -2.30002e+03   -8.45783e+05    1.66995e+03
+ Position Rest.   COM Pull En.      Potential
+    1.50140e+01   -3.43007e+03   -7.28326e+05
+
+           Step           Time
+          26000       52.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28550e+03    3.20905e+03    3.58439e+03    1.88074e+02    1.23878e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04884e+04    1.01338e+05   -2.30002e+03   -8.47721e+05    1.56642e+03
+ Position Rest.   COM Pull En.      Potential
+    2.16930e+01   -3.43428e+03   -7.30535e+05
+
+           Step           Time
+          27000       54.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22328e+03    3.38585e+03    3.59619e+03    1.70127e+02    1.26042e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04729e+04    1.00785e+05   -2.30002e+03   -8.45017e+05    1.69662e+03
+ Position Rest.   COM Pull En.      Potential
+    1.60691e+01   -3.44874e+03   -7.28160e+05
+
+           Step           Time
+          28000       56.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.29115e+03    3.30188e+03    3.58042e+03    1.79962e+02    1.28842e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04249e+04    1.01720e+05   -2.30002e+03   -8.46473e+05    1.58909e+03
+ Position Rest.   COM Pull En.      Potential
+    1.19290e+01   -3.48488e+03   -7.28870e+05
+
+           Step           Time
+          29000       58.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23265e+03    3.43892e+03    3.59183e+03    1.94573e+02    1.28730e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06278e+04    1.00372e+05   -2.30002e+03   -8.46578e+05    1.66514e+03
+ Position Rest.   COM Pull En.      Potential
+    8.76501e+00   -3.44995e+03   -7.29909e+05
+
+           Step           Time
+          30000       60.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.32765e+03    3.31359e+03    3.64565e+03    2.02957e+02    1.30728e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05669e+04    1.00066e+05   -2.30002e+03   -8.46591e+05    1.67365e+03
+ Position Rest.   COM Pull En.      Potential
+    4.07498e+00   -3.47766e+03   -7.30261e+05
+
+           Step           Time
+          31000       62.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21026e+03    3.21849e+03    3.64465e+03    1.94742e+02    1.32287e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05653e+04    1.01636e+05   -2.30002e+03   -8.46874e+05    1.55915e+03
+ Position Rest.   COM Pull En.      Potential
+    4.13603e+00   -3.47464e+03   -7.29293e+05
+
+           Step           Time
+          32000       64.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22311e+03    3.33681e+03    3.62332e+03    1.95839e+02    1.28234e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04776e+04    1.00059e+05   -2.30002e+03   -8.44438e+05    1.65033e+03
+ Position Rest.   COM Pull En.      Potential
+    3.54604e+00   -3.48488e+03   -7.28371e+05
+
+           Step           Time
+          33000       66.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28005e+03    3.29658e+03    3.64125e+03    1.88456e+02    1.31706e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04176e+04    1.00034e+05   -2.30002e+03   -8.44633e+05    1.60773e+03
+ Position Rest.   COM Pull En.      Potential
+    9.39199e+00   -3.50356e+03   -7.28644e+05
+
+           Step           Time
+          34000       68.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.30847e+03    3.23024e+03    3.55680e+03    1.81343e+02    1.30923e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04252e+04    1.02578e+05   -2.30002e+03   -8.46218e+05    1.60683e+03
+ Position Rest.   COM Pull En.      Potential
+    1.79298e+00   -3.51320e+03   -7.27833e+05
+
+           Step           Time
+          35000       70.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.30680e+03    3.19808e+03    3.59426e+03    2.18892e+02    1.31642e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06479e+04    1.01266e+05   -2.30002e+03   -8.46690e+05    1.52156e+03
+ Position Rest.   COM Pull En.      Potential
+    1.25260e+01   -3.54091e+03   -7.29448e+05
+
+           Step           Time
+          36000       72.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24371e+03    3.39752e+03    3.60623e+03    1.39648e+02    1.32390e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06633e+04    1.02056e+05   -2.30002e+03   -8.48043e+05    1.58800e+03
+ Position Rest.   COM Pull En.      Potential
+    5.93007e-01   -3.55597e+03   -7.29880e+05
+
+           Step           Time
+          37000       74.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21182e+03    3.36325e+03    3.66374e+03    1.63633e+02    1.34210e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05520e+04    9.98617e+04   -2.30002e+03   -8.43761e+05    1.64061e+03
+ Position Rest.   COM Pull En.      Potential
+    7.48904e+00   -3.55537e+03   -7.27810e+05
+
+           Step           Time
+          38000       76.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.33562e+03    3.36414e+03    3.53457e+03    1.66650e+02    1.28258e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04528e+04    1.01141e+05   -2.30002e+03   -8.46046e+05    1.51416e+03
+ Position Rest.   COM Pull En.      Potential
+    8.26004e-01   -3.58488e+03   -7.29138e+05
+
+           Step           Time
+          39000       78.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.29269e+03    3.57012e+03    3.64114e+03    1.68328e+02    1.25389e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05676e+04    1.01143e+05   -2.30002e+03   -8.47102e+05    1.60792e+03
+ Position Rest.   COM Pull En.      Potential
+    2.31701e+01   -3.54271e+03   -7.29677e+05
+
+           Step           Time
+          40000       80.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.41888e+03    3.41651e+03    3.73141e+03    2.00693e+02    1.39305e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05379e+04    1.00831e+05   -2.30002e+03   -8.44083e+05    1.65913e+03
+ Position Rest.   COM Pull En.      Potential
+    1.40850e+01   -3.56561e+03   -7.26746e+05
+
+           Step           Time
+          41000       82.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22709e+03    3.49767e+03    3.58437e+03    1.79796e+02    1.25051e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05903e+04    1.00914e+05   -2.30002e+03   -8.45781e+05    1.60408e+03
+ Position Rest.   COM Pull En.      Potential
+    1.73302e+00   -3.55356e+03   -7.28786e+05
+
+           Step           Time
+          42000       84.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.29609e+03    3.20001e+03    3.54918e+03    2.02463e+02    1.31798e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06779e+04    9.95855e+04   -2.30002e+03   -8.45979e+05    1.58781e+03
+ Position Rest.   COM Pull En.      Potential
+    4.86903e+00   -3.56741e+03   -7.30425e+05
+
+           Step           Time
+          43000       86.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20948e+03    3.18910e+03    3.61031e+03    1.78780e+02    1.29600e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06640e+04    1.00784e+05   -2.30002e+03   -8.44910e+05    1.59508e+03
+ Position Rest.   COM Pull En.      Potential
+    3.84101e+00   -3.55416e+03   -7.28234e+05
+
+           Step           Time
+          44000       88.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17640e+03    3.29213e+03    3.62036e+03    2.01528e+02    1.36145e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04545e+04    1.02395e+05   -2.30002e+03   -8.46890e+05    1.63808e+03
+ Position Rest.   COM Pull En.      Potential
+    4.49402e+00   -3.58308e+03   -7.28630e+05
+
+           Step           Time
+          45000       90.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20463e+03    3.32504e+03    3.58184e+03    1.75930e+02    1.27155e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07733e+04    1.01249e+05   -2.30002e+03   -8.46870e+05    1.57915e+03
+ Position Rest.   COM Pull En.      Potential
+    5.29400e+00   -3.60958e+03   -7.29614e+05
+
+           Step           Time
+          46000       92.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21436e+03    3.40727e+03    3.57143e+03    1.54264e+02    1.28099e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03895e+04    1.00451e+05   -2.30002e+03   -8.44316e+05    1.60051e+03
+ Position Rest.   COM Pull En.      Potential
+    1.09402e+00   -3.61621e+03   -7.28161e+05
+
+           Step           Time
+          47000       94.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20985e+03    3.42159e+03    3.61028e+03    1.79726e+02    1.29244e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05232e+04    1.00127e+05   -2.30002e+03   -8.44998e+05    1.67473e+03
+ Position Rest.   COM Pull En.      Potential
+    5.96905e+00   -3.64271e+03   -7.28895e+05
+
+           Step           Time
+          48000       96.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.18156e+03    3.42268e+03    3.59903e+03    2.02169e+02    1.32161e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04936e+04    1.00280e+05   -2.30002e+03   -8.44912e+05    1.63291e+03
+ Position Rest.   COM Pull En.      Potential
+    8.94014e-01   -3.65356e+03   -7.28731e+05
+
+           Step           Time
+          49000       98.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26640e+03    3.41560e+03    3.60894e+03    2.04233e+02    1.24375e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04523e+04    1.00771e+05   -2.30002e+03   -8.46317e+05    1.63494e+03
+ Position Rest.   COM Pull En.      Potential
+    3.15303e+00   -3.65958e+03   -7.29676e+05
+
+           Step           Time
+          50000      100.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.36563e+03    3.34824e+03    3.53644e+03    2.18234e+02    1.25765e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05772e+04    1.01178e+05   -2.30002e+03   -8.44147e+05    1.58684e+03
+ Position Rest.   COM Pull En.      Potential
+    8.65705e+00   -3.63428e+03   -7.27004e+05
+
+           Step           Time
+          51000      102.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19853e+03    3.34288e+03    3.51225e+03    1.59939e+02    1.32714e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05176e+04    1.00618e+05   -2.30002e+03   -8.46021e+05    1.56635e+03
+ Position Rest.   COM Pull En.      Potential
+    1.73902e+00   -3.62886e+03   -7.29706e+05
+
+           Step           Time
+          52000      104.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25626e+03    3.37947e+03    3.61993e+03    1.88668e+02    1.33427e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05179e+04    1.01161e+05   -2.30002e+03   -8.46183e+05    1.60233e+03
+ Position Rest.   COM Pull En.      Potential
+    8.85899e+00   -3.67765e+03   -7.29093e+05
+
+           Step           Time
+          53000      106.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25887e+03    3.28074e+03    3.65204e+03    1.82476e+02    1.24470e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05171e+04    1.00422e+05   -2.30002e+03   -8.44017e+05    1.55113e+03
+ Position Rest.   COM Pull En.      Potential
+    2.96100e+00   -3.67103e+03   -7.27876e+05
+
+           Step           Time
+          54000      108.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28867e+03    3.28776e+03    3.68058e+03    1.62827e+02    1.30434e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04897e+04    1.00811e+05   -2.30002e+03   -8.43385e+05    1.65166e+03
+ Position Rest.   COM Pull En.      Potential
+    7.25005e+00   -3.73428e+03   -7.26735e+05
+
+           Step           Time
+          55000      110.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.27910e+03    3.37733e+03    3.66662e+03    2.00752e+02    1.30941e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04893e+04    1.00481e+05   -2.30002e+03   -8.45075e+05    1.55531e+03
+ Position Rest.   COM Pull En.      Potential
+    8.25000e-01   -3.72705e+03   -7.28743e+05
+
+           Step           Time
+          56000      112.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16671e+03    3.41566e+03    3.66875e+03    2.06914e+02    1.33594e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05440e+04    1.00468e+05   -2.30002e+03   -8.45343e+05    1.53326e+03
+ Position Rest.   COM Pull En.      Potential
+    2.11770e+01   -3.78548e+03   -7.29067e+05
+
+           Step           Time
+          57000      114.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26476e+03    3.47133e+03    3.56752e+03    1.92875e+02    1.27341e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05171e+04    1.00023e+05   -2.30002e+03   -8.44010e+05    1.60940e+03
+ Position Rest.   COM Pull En.      Potential
+    1.86670e+01   -3.83789e+03   -7.28209e+05
+
+           Step           Time
+          58000      116.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.29397e+03    3.43597e+03    3.60076e+03    1.76423e+02    1.28529e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04467e+04    1.01747e+05   -2.30002e+03   -8.46777e+05    1.59761e+03
+ Position Rest.   COM Pull En.      Potential
+    8.11403e+00   -3.79753e+03   -7.29282e+05
+
+           Step           Time
+          59000      118.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.14828e+03    3.38651e+03    3.63998e+03    1.78541e+02    1.24125e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07011e+04    1.00232e+05   -2.30002e+03   -8.45503e+05    1.53838e+03
+ Position Rest.   COM Pull En.      Potential
+    7.11605e+00   -3.76681e+03   -7.29497e+05
+
+           Step           Time
+          60000      120.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26374e+03    3.49206e+03    3.59505e+03    1.91895e+02    1.26092e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05568e+04    1.01133e+05   -2.30002e+03   -8.46469e+05    1.62983e+03
+ Position Rest.   COM Pull En.      Potential
+    4.38799e+00   -3.79693e+03   -7.29438e+05
+
+           Step           Time
+          61000      122.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19840e+03    3.43032e+03    3.64472e+03    1.97145e+02    1.29214e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04550e+04    1.00686e+05   -2.30002e+03   -8.44383e+05    1.63648e+03
+ Position Rest.   COM Pull En.      Potential
+    3.48098e+00   -3.81620e+03   -7.27956e+05
+
+           Step           Time
+          62000      124.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.27134e+03    3.41609e+03    3.64476e+03    2.22591e+02    1.27592e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06846e+04    1.01060e+05   -2.30002e+03   -8.44991e+05    1.62196e+03
+ Position Rest.   COM Pull En.      Potential
+    2.00299e+00   -3.81982e+03   -7.27912e+05
+
+           Step           Time
+          63000      126.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26911e+03    3.48482e+03    3.64975e+03    1.58873e+02    1.29219e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07707e+04    1.00879e+05   -2.30002e+03   -8.46760e+05    1.64013e+03
+ Position Rest.   COM Pull En.      Potential
+    4.62500e+00   -3.86440e+03   -7.29776e+05
+
+           Step           Time
+          64000      128.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.18211e+03    3.32282e+03    3.67120e+03    1.99477e+02    1.29778e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06506e+04    1.01432e+05   -2.30002e+03   -8.45712e+05    1.63773e+03
+ Position Rest.   COM Pull En.      Potential
+    3.10603e+00   -3.84873e+03   -7.28464e+05
+
+           Step           Time
+          65000      130.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25911e+03    3.37405e+03    3.62169e+03    1.90333e+02    1.30638e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06525e+04    1.01380e+05   -2.30002e+03   -8.44940e+05    1.64179e+03
+ Position Rest.   COM Pull En.      Potential
+    1.16801e+00   -3.84151e+03   -7.27655e+05
+
+           Step           Time
+          66000      132.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20077e+03    3.40777e+03    3.65293e+03    1.90632e+02    1.34270e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05023e+04    1.01279e+05   -2.30002e+03   -8.44030e+05    1.58242e+03
+ Position Rest.   COM Pull En.      Potential
+    5.22496e+00   -3.88488e+03   -7.27052e+05
+
+           Step           Time
+          67000      134.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16937e+03    3.44017e+03    3.69369e+03    1.79372e+02    1.32161e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05945e+04    1.01135e+05   -2.30002e+03   -8.46421e+05    1.65621e+03
+ Position Rest.   COM Pull En.      Potential
+    3.78900e+00   -3.89150e+03   -7.29419e+05
+
+           Step           Time
+          68000      136.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25070e+03    3.44200e+03    3.66776e+03    1.92975e+02    1.24835e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07251e+04    1.00389e+05   -2.30002e+03   -8.46712e+05    1.65030e+03
+ Position Rest.   COM Pull En.      Potential
+    6.25012e-01   -3.90415e+03   -7.30349e+05
+
+           Step           Time
+          69000      138.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.13142e+03    3.32720e+03    3.57065e+03    1.89562e+02    1.33432e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.09245e+04    9.96725e+04   -2.30002e+03   -8.43360e+05    1.73548e+03
+ Position Rest.   COM Pull En.      Potential
+    1.12500e+00   -3.90777e+03   -7.27680e+05
+
+           Step           Time
+          70000      140.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23548e+03    3.43277e+03    3.67816e+03    2.25937e+02    1.31655e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05913e+04    1.01149e+05   -2.30002e+03   -8.47076e+05    1.59390e+03
+ Position Rest.   COM Pull En.      Potential
+    4.62898e+00   -3.99030e+03   -7.30139e+05
+
+           Step           Time
+          71000      142.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21645e+03    3.33786e+03    3.66065e+03    1.83872e+02    1.27719e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04509e+04    1.01141e+05   -2.30002e+03   -8.46067e+05    1.60871e+03
+ Position Rest.   COM Pull En.      Potential
+    6.73905e+00   -3.98307e+03   -7.29466e+05
+
+           Step           Time
+          72000      144.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.35988e+03    3.53065e+03    3.56256e+03    1.48569e+02    1.24544e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05934e+04    1.01878e+05   -2.30002e+03   -8.48070e+05    1.62565e+03
+ Position Rest.   COM Pull En.      Potential
+    1.18830e+01   -4.00174e+03   -7.30416e+05
+
+           Step           Time
+          73000      146.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.15624e+03    3.39192e+03    3.61138e+03    1.90719e+02    1.32574e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07750e+04    1.01893e+05   -2.30002e+03   -8.47159e+05    1.65201e+03
+ Position Rest.   COM Pull En.      Potential
+    2.02901e+00   -3.95837e+03   -7.29418e+05
+
+           Step           Time
+          74000      148.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19739e+03    3.28176e+03    3.62450e+03    1.77122e+02    1.30391e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05967e+04    1.01622e+05   -2.30002e+03   -8.46490e+05    1.59136e+03
+ Position Rest.   COM Pull En.      Potential
+    1.20060e+01   -4.01259e+03   -7.29395e+05
+
+           Step           Time
+          75000      150.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.11608e+03    3.13876e+03    3.60398e+03    1.73200e+02    1.30758e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07730e+04    1.00263e+05   -2.30002e+03   -8.44891e+05    1.63427e+03
+ Position Rest.   COM Pull En.      Potential
+    2.71220e+01   -4.05957e+03   -7.29214e+05
+
+           Step           Time
+          76000      152.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.10144e+03    3.33793e+03    3.57939e+03    1.85822e+02    1.36750e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05363e+04    9.95258e+04   -2.30002e+03   -8.44066e+05    1.56055e+03
+ Position Rest.   COM Pull En.      Potential
+    1.62410e+01   -4.08186e+03   -7.29237e+05
+
+           Step           Time
+          77000      154.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16781e+03    3.24662e+03    3.72248e+03    1.72369e+02    1.28719e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05793e+04    1.00983e+05   -2.30002e+03   -8.46056e+05    1.66197e+03
+ Position Rest.   COM Pull En.      Potential
+    1.79420e+01   -4.09753e+03   -7.29615e+05
+
+           Step           Time
+          78000      156.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16931e+03    3.11430e+03    3.65053e+03    1.54927e+02    1.26959e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05144e+04    1.00249e+05   -2.30002e+03   -8.44421e+05    1.62723e+03
+ Position Rest.   COM Pull En.      Potential
+    1.28620e+01   -4.14210e+03   -7.29101e+05
+
+           Step           Time
+          79000      158.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.29425e+03    3.11650e+03    3.65287e+03    1.57014e+02    1.29804e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07171e+04    1.00572e+05   -2.30002e+03   -8.45087e+05    1.58118e+03
+ Position Rest.   COM Pull En.      Potential
+    1.22130e+01   -4.16379e+03   -7.29150e+05
+
+           Step           Time
+          80000      160.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19486e+03    3.23692e+03    3.62979e+03    2.03550e+02    1.30707e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06369e+04    1.03240e+05   -2.30002e+03   -8.48523e+05    1.60300e+03
+ Position Rest.   COM Pull En.      Potential
+    1.03050e+01   -4.13909e+03   -7.29900e+05
+
+           Step           Time
+          81000      162.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.14998e+03    3.16874e+03    3.57832e+03    1.50888e+02    1.26458e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04675e+04    1.02249e+05   -2.30002e+03   -8.46956e+05    1.57363e+03
+ Position Rest.   COM Pull En.      Potential
+    8.35600e+00   -4.16319e+03   -7.29809e+05
+
+           Step           Time
+          82000      164.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24761e+03    3.27464e+03    3.60940e+03    1.81817e+02    1.25733e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05711e+04    1.00581e+05   -2.30002e+03   -8.45781e+05    1.59072e+03
+ Position Rest.   COM Pull En.      Potential
+    1.92050e+01   -4.19813e+03   -7.29946e+05
+
+           Step           Time
+          83000      166.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26014e+03    3.35912e+03    3.67787e+03    1.80908e+02    1.26504e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04516e+04    1.00659e+05   -2.30002e+03   -8.45641e+05    1.67135e+03
+ Position Rest.   COM Pull En.      Potential
+    8.82600e+00   -4.16680e+03   -7.29574e+05
+
+           Step           Time
+          84000      168.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.35440e+03    3.32241e+03    3.68503e+03    2.01466e+02    1.29577e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05440e+04    1.01435e+05   -2.30002e+03   -8.47074e+05    1.65643e+03
+ Position Rest.   COM Pull En.      Potential
+    1.70639e+01   -4.20596e+03   -7.30069e+05
+
+           Step           Time
+          85000      170.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.30908e+03    3.31625e+03    3.65620e+03    1.88345e+02    1.26647e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04518e+04    1.01408e+05   -2.30002e+03   -8.47844e+05    1.59833e+03
+ Position Rest.   COM Pull En.      Potential
+    1.23700e+01   -4.23668e+03   -7.31173e+05
+
+           Step           Time
+          86000      172.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24726e+03    3.39032e+03    3.67169e+03    1.73248e+02    1.27867e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05658e+04    1.00678e+05   -2.30002e+03   -8.45356e+05    1.60551e+03
+ Position Rest.   COM Pull En.      Potential
+    2.04530e+01   -4.31439e+03   -7.29339e+05
+
+           Step           Time
+          87000      174.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.18659e+03    3.55465e+03    3.59483e+03    1.83191e+02    1.32738e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06621e+04    1.01579e+05   -2.30002e+03   -8.45523e+05    1.57625e+03
+ Position Rest.   COM Pull En.      Potential
+    7.09301e+00   -4.29571e+03   -7.28447e+05
+
+           Step           Time
+          88000      176.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21364e+03    3.30689e+03    3.61755e+03    2.06601e+02    1.29788e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06172e+04    9.90017e+04   -2.30002e+03   -8.43437e+05    1.63987e+03
+ Position Rest.   COM Pull En.      Potential
+    1.61260e+01   -4.29571e+03   -7.29115e+05
+
+           Step           Time
+          89000      178.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23053e+03    3.45128e+03    3.62553e+03    1.75534e+02    1.31958e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04848e+04    1.00601e+05   -2.30002e+03   -8.45203e+05    1.57520e+03
+ Position Rest.   COM Pull En.      Potential
+    2.20830e+01   -4.37523e+03   -7.29392e+05
+
+           Step           Time
+          90000      180.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19215e+03    3.30643e+03    3.62502e+03    1.96416e+02    1.30324e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05528e+04    1.01147e+05   -2.30002e+03   -8.45565e+05    1.60786e+03
+ Position Rest.   COM Pull En.      Potential
+    1.23090e+01   -4.38005e+03   -7.29302e+05
+
+           Step           Time
+          91000      182.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.32157e+03    3.38704e+03    3.63244e+03    2.02191e+02    1.29646e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05442e+04    1.01058e+05   -2.30002e+03   -8.45373e+05    1.57620e+03
+ Position Rest.   COM Pull En.      Potential
+    1.76740e+01   -4.42945e+03   -7.29067e+05
+
+           Step           Time
+          92000      184.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17915e+03    3.33661e+03    3.54741e+03    1.90729e+02    1.29887e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06163e+04    9.98506e+04   -2.30002e+03   -8.43774e+05    1.62423e+03
+ Position Rest.   COM Pull En.      Potential
+    2.37740e+01   -4.48065e+03   -7.28887e+05
+
+           Step           Time
+          93000      186.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.18097e+03    3.35483e+03    3.58102e+03    2.14474e+02    1.32962e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05605e+04    1.00083e+05   -2.30002e+03   -8.43138e+05    1.61184e+03
+ Position Rest.   COM Pull En.      Potential
+    9.83398e+00   -4.45656e+03   -7.27969e+05
+
+           Step           Time
+          94000      188.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16647e+03    3.33523e+03    3.65736e+03    1.62660e+02    1.31744e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06545e+04    1.01894e+05   -2.30002e+03   -8.46321e+05    1.55748e+03
+ Position Rest.   COM Pull En.      Potential
+    2.26420e+01    4.50451e+03   -7.20348e+05
+
+           Step           Time
+          95000      190.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.34181e+03    3.31064e+03    3.60044e+03    1.64848e+02    1.29401e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03146e+04    1.02369e+05   -2.30002e+03   -8.46429e+05    1.66506e+03
+ Position Rest.   COM Pull En.      Potential
+    1.55880e+01    4.50029e+03   -7.20153e+05
+
+           Step           Time
+          96000      192.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26837e+03    3.44000e+03    3.61822e+03    1.75200e+02    1.33036e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04462e+04    1.00707e+05   -2.30002e+03   -8.45026e+05    1.58802e+03
+ Position Rest.   COM Pull En.      Potential
+    2.43010e+01    4.49186e+03   -7.20237e+05
+
+           Step           Time
+          97000      194.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.41682e+03    3.34779e+03    3.55523e+03    1.88360e+02    1.27487e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05508e+04    1.00969e+05   -2.30002e+03   -8.44223e+05    1.57519e+03
+ Position Rest.   COM Pull En.      Potential
+    4.60770e+01    4.41294e+03   -7.19187e+05
+
+           Step           Time
+          98000      196.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.29562e+03    3.49143e+03    3.59481e+03    2.01744e+02    1.34812e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05227e+04    1.00021e+05   -2.30002e+03   -8.42732e+05    1.56646e+03
+ Position Rest.   COM Pull En.      Potential
+    1.49340e+01    4.42620e+03   -7.18549e+05
+
+           Step           Time
+          99000      198.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24177e+03    3.50914e+03    3.62735e+03    1.91047e+02    1.26167e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03363e+04    1.00326e+05   -2.30002e+03   -8.44131e+05    1.65408e+03
+ Position Rest.   COM Pull En.      Potential
+    1.78330e+01    4.41415e+03   -7.19852e+05
+
+           Step           Time
+         100000      200.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16332e+03    3.26592e+03    3.64242e+03    1.84001e+02    1.25516e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03980e+04    1.01172e+05   -2.30002e+03   -8.44694e+05    1.60092e+03
+ Position Rest.   COM Pull En.      Potential
+    1.92970e+01    4.39066e+03   -7.19902e+05
+
+           Step           Time
+         101000      202.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.31662e+03    3.41696e+03    3.68132e+03    2.02387e+02    1.28069e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05725e+04    1.00850e+05   -2.30002e+03   -8.45532e+05    1.60752e+03
+ Position Rest.   COM Pull En.      Potential
+    3.01940e+01    4.31957e+03   -7.20554e+05
+
+           Step           Time
+         102000      204.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19034e+03    3.47159e+03    3.69878e+03    2.01600e+02    1.32622e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06620e+04    1.01577e+05   -2.30002e+03   -8.48129e+05    1.61040e+03
+ Position Rest.   COM Pull En.      Potential
+    2.00130e+01    4.32319e+03   -7.22348e+05
+
+           Step           Time
+         103000      206.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23091e+03    3.28870e+03    3.62812e+03    1.70803e+02    1.39640e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07074e+04    1.01963e+05   -2.30002e+03   -8.46149e+05    1.63050e+03
+ Position Rest.   COM Pull En.      Potential
+    5.40903e+00    4.33162e+03   -7.20096e+05
+
+           Step           Time
+         104000      208.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17596e+03    3.43527e+03    3.68844e+03    2.16933e+02    1.33195e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.08295e+04    1.01745e+05   -2.30002e+03   -8.47202e+05    1.69088e+03
+ Position Rest.   COM Pull En.      Potential
+    1.38160e+01    4.29668e+03   -7.21077e+05
+
+           Step           Time
+         105000      210.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22038e+03    3.50617e+03    3.62568e+03    1.82585e+02    1.25317e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05640e+04    1.01115e+05   -2.30002e+03   -8.45864e+05    1.58503e+03
+ Position Rest.   COM Pull En.      Potential
+    5.57598e+00    4.23644e+03   -7.20870e+05
+
+           Step           Time
+         106000      212.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17012e+03    3.35000e+03    3.65973e+03    1.78369e+02    1.34054e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07027e+04    1.01245e+05   -2.30002e+03   -8.47367e+05    1.62593e+03
+ Position Rest.   COM Pull En.      Potential
+    1.41021e+01    4.22801e+03   -7.22153e+05
+
+           Step           Time
+         107000      214.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20136e+03    3.16354e+03    3.66762e+03    1.86872e+02    1.28174e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06289e+04    9.82138e+04   -2.30002e+03   -8.42750e+05    1.58110e+03
+ Position Rest.   COM Pull En.      Potential
+    1.09140e+01    4.09608e+03   -7.21018e+05
+
+           Step           Time
+         108000      216.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19490e+03    3.26985e+03    3.63723e+03    1.94026e+02    1.27326e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06898e+04    1.02226e+05   -2.30002e+03   -8.46633e+05    1.60425e+03
+ Position Rest.   COM Pull En.      Potential
+    2.00740e+01    4.04488e+03   -7.20780e+05
+
+           Step           Time
+         109000      218.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23157e+03    3.36320e+03    3.62166e+03    2.08038e+02    1.31897e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04713e+04    1.00886e+05   -2.30002e+03   -8.44714e+05    1.65340e+03
+ Position Rest.   COM Pull En.      Potential
+    2.33219e+01    4.03825e+03   -7.20198e+05
+
+           Step           Time
+         110000      220.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.15748e+03    3.28964e+03    3.59554e+03    1.87650e+02    1.29948e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06173e+04    1.00814e+05   -2.30002e+03   -8.44263e+05    1.59775e+03
+ Position Rest.   COM Pull En.      Potential
+    7.85400e+00    4.01536e+03   -7.19981e+05
+
+           Step           Time
+         111000      222.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.15800e+03    3.15500e+03    3.64411e+03    1.89985e+02    1.29583e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06047e+04    1.00144e+05   -2.30002e+03   -8.44599e+05    1.63115e+03
+ Position Rest.   COM Pull En.      Potential
+    2.14700e+01    3.94910e+03   -7.21106e+05
+
+           Step           Time
+         112000      224.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23769e+03    3.38119e+03    3.53811e+03    1.64666e+02    1.30447e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05580e+04    1.01164e+05   -2.30002e+03   -8.44817e+05    1.61998e+03
+ Position Rest.   COM Pull En.      Potential
+    2.53130e+01    3.92259e+03   -7.20200e+05
+
+           Step           Time
+         113000      226.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26691e+03    3.19566e+03    3.61400e+03    1.79306e+02    1.25157e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03139e+04    1.01664e+05   -2.30002e+03   -8.47972e+05    1.60403e+03
+ Position Rest.   COM Pull En.      Potential
+    2.72460e+01    3.88223e+03   -7.23274e+05
+
+           Step           Time
+         114000      228.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22772e+03    3.24779e+03    3.62991e+03    1.62307e+02    1.29289e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04273e+04    1.00507e+05   -2.30002e+03   -8.44284e+05    1.64692e+03
+ Position Rest.   COM Pull En.      Potential
+    2.37420e+01    3.87861e+03   -7.20540e+05
+
+           Step           Time
+         115000      230.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17810e+03    3.19093e+03    3.62010e+03    1.95600e+02    1.31861e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05874e+04    1.00909e+05   -2.30002e+03   -8.45286e+05    1.58996e+03
+ Position Rest.   COM Pull En.      Potential
+    4.43690e+01    3.79910e+03   -7.21153e+05
+
+           Step           Time
+         116000      232.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22589e+03    3.32945e+03    3.64433e+03    1.79253e+02    1.29956e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04702e+04    1.00074e+05   -2.30002e+03   -8.44115e+05    1.55143e+03
+ Position Rest.   COM Pull En.      Potential
+    2.64430e+01    3.82982e+03   -7.20784e+05
+
+           Step           Time
+         117000      234.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19409e+03    3.33900e+03    3.62575e+03    1.86523e+02    1.33142e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05723e+04    1.00124e+05   -2.30002e+03   -8.43759e+05    1.62222e+03
+ Position Rest.   COM Pull En.      Potential
+    3.82030e+01    3.75030e+03   -7.20275e+05
+
+           Step           Time
+         118000      236.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26445e+03    3.23185e+03    3.69033e+03    2.04920e+02    1.24356e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04156e+04    1.01879e+05   -2.30002e+03   -8.46683e+05    1.63688e+03
+ Position Rest.   COM Pull En.      Potential
+    5.34810e+01    3.67440e+03   -7.21689e+05
+
+           Step           Time
+         119000      238.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21366e+03    3.38398e+03    3.60032e+03    1.98929e+02    1.27297e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03713e+04    1.01463e+05   -2.30002e+03   -8.46469e+05    1.67780e+03
+ Position Rest.   COM Pull En.      Potential
+    3.30379e+01    3.67320e+03   -7.21881e+05
+
+           Step           Time
+         120000      240.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19716e+03    3.23215e+03    3.68817e+03    1.78912e+02    1.31094e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07829e+04    1.00485e+05   -2.30002e+03   -8.45857e+05    1.66518e+03
+ Position Rest.   COM Pull En.      Potential
+    2.33410e+01    3.68043e+03   -7.21913e+05
+
+           Step           Time
+         121000      242.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19415e+03    3.29121e+03    3.71658e+03    2.14083e+02    1.23598e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04177e+04    9.94308e+04   -2.30002e+03   -8.41034e+05    1.58422e+03
+ Position Rest.   COM Pull En.      Potential
+    2.59940e+01    3.60151e+03   -7.18622e+05
+
+           Step           Time
+         122000      244.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.15559e+03    3.46574e+03    3.70128e+03    1.88762e+02    1.35845e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06639e+04    1.03097e+05   -2.30002e+03   -8.47129e+05    1.65255e+03
+ Position Rest.   COM Pull En.      Potential
+    1.79290e+01    3.58826e+03   -7.20539e+05
+
+           Step           Time
+         123000      246.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.33550e+03    3.32148e+03    3.64773e+03    1.76270e+02    1.29564e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04355e+04    1.01990e+05   -2.30002e+03   -8.45915e+05    1.55647e+03
+ Position Rest.   COM Pull En.      Potential
+    3.62539e+01    3.54669e+03   -7.20873e+05
+
+           Step           Time
+         124000      248.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26647e+03    3.31398e+03    3.63993e+03    1.86221e+02    1.23429e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04279e+04    1.01224e+05   -2.30002e+03   -8.45292e+05    1.66368e+03
+ Position Rest.   COM Pull En.      Potential
+    1.23660e+01    3.56778e+03   -7.21055e+05
+
+           Step           Time
+         125000      250.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.29015e+03    3.25774e+03    3.59277e+03    1.59605e+02    1.37538e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07418e+04    9.93213e+04   -2.30002e+03   -8.44502e+05    1.65117e+03
+ Position Rest.   COM Pull En.      Potential
+    1.99390e+01    3.47441e+03   -7.21918e+05
+
+           Step           Time
+         126000      252.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19554e+03    3.30496e+03    3.59867e+03    1.93496e+02    1.26686e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05276e+04    1.00434e+05   -2.30002e+03   -8.44627e+05    1.54324e+03
+ Position Rest.   COM Pull En.      Potential
+    4.09170e+01    3.41959e+03   -7.21402e+05
+
+           Step           Time
+         127000      254.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.27858e+03    3.40340e+03    3.64453e+03    1.78486e+02    1.33350e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03304e+04    1.00633e+05   -2.30002e+03   -8.45152e+05    1.62926e+03
+ Position Rest.   COM Pull En.      Potential
+    3.40250e+01    3.40453e+03   -7.21582e+05
+
+           Step           Time
+         128000      256.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19514e+03    3.25450e+03    3.60783e+03    2.00190e+02    1.28015e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04901e+04    1.00844e+05   -2.30002e+03   -8.45040e+05    1.61635e+03
+ Position Rest.   COM Pull En.      Potential
+    8.96301e+00    3.41296e+03   -7.21430e+05
+
+           Step           Time
+         129000      258.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24896e+03    3.44798e+03    3.64481e+03    1.71310e+02    1.28921e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04650e+04    9.99690e+04   -2.30002e+03   -8.42690e+05    1.62059e+03
+ Position Rest.   COM Pull En.      Potential
+    1.84540e+01    3.34188e+03   -7.19773e+05
+
+           Step           Time
+         130000      260.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22685e+03    3.27180e+03    3.56351e+03    1.69754e+02    1.30158e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04643e+04    1.01471e+05   -2.30002e+03   -8.45085e+05    1.51569e+03
+ Position Rest.   COM Pull En.      Potential
+    2.28240e+01    3.32320e+03   -7.21055e+05
+
+           Step           Time
+         131000      262.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.41752e+03    3.46348e+03    3.60426e+03    1.97403e+02    1.22534e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03042e+04    1.01929e+05   -2.30002e+03   -8.46881e+05    1.63609e+03
+ Position Rest.   COM Pull En.      Potential
+    2.53170e+01    3.29067e+03   -7.22088e+05
+
+           Step           Time
+         132000      264.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.14779e+03    3.28065e+03    3.68507e+03    2.23319e+02    1.32141e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05831e+04    1.00804e+05   -2.30002e+03   -8.46521e+05    1.63102e+03
+ Position Rest.   COM Pull En.      Potential
+    1.37570e+01    3.29128e+03   -7.22840e+05
+
+           Step           Time
+         133000      266.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22020e+03    3.34160e+03    3.60126e+03    1.96282e+02    1.27932e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05334e+04    1.01419e+05   -2.30002e+03   -8.46888e+05    1.62836e+03
+ Position Rest.   COM Pull En.      Potential
+    9.70504e+00    3.25332e+03   -7.22705e+05
+
+           Step           Time
+         134000      268.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23857e+03    3.42398e+03    3.64986e+03    2.12781e+02    1.30359e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04126e+04    1.00089e+05   -2.30002e+03   -8.44600e+05    1.61316e+03
+ Position Rest.   COM Pull En.      Potential
+    2.24210e+01    3.13827e+03   -7.21796e+05
+
+           Step           Time
+         135000      270.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26911e+03    3.45391e+03    3.58831e+03    1.69509e+02    1.27668e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05950e+04    1.00898e+05   -2.30002e+03   -8.45320e+05    1.54383e+03
+ Position Rest.   COM Pull En.      Potential
+    2.57140e+01    3.12863e+03   -7.21672e+05
+
+           Step           Time
+         136000      272.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.34900e+03    3.28777e+03    3.62928e+03    1.92879e+02    1.29134e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05333e+04    9.99905e+04   -2.30002e+03   -8.44717e+05    1.56447e+03
+ Position Rest.   COM Pull En.      Potential
+    3.82450e+01    3.07622e+03   -7.22064e+05
+
+           Step           Time
+         137000      274.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25174e+03    3.52028e+03    3.58457e+03    1.81030e+02    1.28342e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03879e+04    1.01088e+05   -2.30002e+03   -8.45336e+05    1.61505e+03
+ Position Rest.   COM Pull En.      Potential
+    1.43400e+01    3.07562e+03   -7.21634e+05
+
+           Step           Time
+         138000      276.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.33797e+03    3.32521e+03    3.49925e+03    1.80957e+02    1.31477e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04166e+04    1.01231e+05   -2.30002e+03   -8.44544e+05    1.55709e+03
+ Position Rest.   COM Pull En.      Potential
+    2.80760e+01    3.01357e+03   -7.20940e+05
+
+           Step           Time
+         139000      278.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20868e+03    3.43099e+03    3.65957e+03    1.75681e+02    1.33659e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05770e+04    1.01893e+05   -2.30002e+03   -8.46227e+05    1.62843e+03
+ Position Rest.   COM Pull En.      Potential
+    4.06489e+01    2.94730e+03   -7.21629e+05
+
+           Step           Time
+         140000      280.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23726e+03    3.38593e+03    3.51104e+03    1.81651e+02    1.32421e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06180e+04    1.00082e+05   -2.30002e+03   -8.42985e+05    1.63749e+03
+ Position Rest.   COM Pull En.      Potential
+    1.24190e+01    2.94188e+03   -7.20353e+05
+
+           Step           Time
+         141000      282.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26278e+03    3.38282e+03    3.61022e+03    1.74970e+02    1.28472e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04782e+04    1.01673e+05   -2.30002e+03   -8.46336e+05    1.61271e+03
+ Position Rest.   COM Pull En.      Potential
+    4.10320e+01    2.86658e+03   -7.22250e+05
+
+           Step           Time
+         142000      284.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26954e+03    3.30131e+03    3.55714e+03    1.71110e+02    1.33212e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03810e+04    1.01182e+05   -2.30002e+03   -8.44704e+05    1.58124e+03
+ Position Rest.   COM Pull En.      Potential
+    4.22990e+01    2.80936e+03   -7.21376e+05
+
+           Step           Time
+         143000      286.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26700e+03    3.38751e+03    3.60244e+03    2.04987e+02    1.27398e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03511e+04    1.02004e+05   -2.30002e+03   -8.44508e+05    1.59190e+03
+ Position Rest.   COM Pull En.      Potential
+    3.34090e+01    2.69731e+03   -7.20395e+05
+
+           Step           Time
+         144000      288.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.32786e+03    3.37861e+03    3.62194e+03    1.88392e+02    1.28672e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04942e+04    1.02385e+05   -2.30002e+03   -8.48469e+05    1.60438e+03
+ Position Rest.   COM Pull En.      Potential
+    4.01620e+01    2.68285e+03   -7.23759e+05
+
+           Step           Time
+         145000      290.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24856e+03    3.25565e+03    3.61143e+03    2.15011e+02    1.27416e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06305e+04    1.01820e+05   -2.30002e+03   -8.46318e+05    1.58005e+03
+ Position Rest.   COM Pull En.      Potential
+    2.52690e+01    2.63647e+03   -7.22320e+05
+
+           Step           Time
+         146000      292.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21800e+03    3.23271e+03    3.70659e+03    1.78395e+02    1.25434e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04412e+04    1.00969e+05   -2.30002e+03   -8.46479e+05    1.58793e+03
+ Position Rest.   COM Pull En.      Potential
+    4.02990e+01    2.54129e+03   -7.23610e+05
+
+           Step           Time
+         147000      294.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25567e+03    3.22300e+03    3.67162e+03    1.60534e+02    1.29422e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07001e+04    1.01061e+05   -2.30002e+03   -8.44286e+05    1.57584e+03
+ Position Rest.   COM Pull En.      Potential
+    3.29820e+01    2.53225e+03   -7.21079e+05
+
+           Step           Time
+         148000      296.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21868e+03    3.20154e+03    3.64488e+03    1.63514e+02    1.31566e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05419e+04    1.00401e+05   -2.30002e+03   -8.43883e+05    1.62159e+03
+ Position Rest.   COM Pull En.      Potential
+    3.57900e+01    2.47623e+03   -7.21562e+05
+
+           Step           Time
+         149000      298.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.31314e+03    3.29859e+03    3.67113e+03    1.94284e+02    1.33365e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05741e+04    1.01417e+05   -2.30002e+03   -8.46578e+05    1.68710e+03
+ Position Rest.   COM Pull En.      Potential
+    4.43180e+01    2.44430e+03   -7.22900e+05
+
+           Step           Time
+         150000      300.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.30580e+03    3.31944e+03    3.59440e+03    1.71208e+02    1.27230e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04779e+04    1.00469e+05   -2.30002e+03   -8.44796e+05    1.60460e+03
+ Position Rest.   COM Pull En.      Potential
+    2.62691e+01    2.41960e+03   -7.22436e+05
+
+           Step           Time
+         151000      302.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.33474e+03    3.29380e+03    3.63965e+03    1.95713e+02    1.33548e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04977e+04    1.00961e+05   -2.30002e+03   -8.45632e+05    1.65786e+03
+ Position Rest.   COM Pull En.      Potential
+    1.70570e+01    2.34430e+03   -7.22655e+05
+
+           Step           Time
+         152000      304.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.15189e+03    3.23252e+03    3.70157e+03    2.19964e+02    1.30017e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06810e+04    1.00884e+05   -2.30002e+03   -8.47372e+05    1.55638e+03
+ Position Rest.   COM Pull En.      Potential
+    2.95470e+01    2.29189e+03   -7.24623e+05
+
+           Step           Time
+         153000      306.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.16710e+03    3.31995e+03    3.56702e+03    1.74672e+02    1.28289e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05658e+04    1.01729e+05   -2.30002e+03   -8.48293e+05    1.57902e+03
+ Position Rest.   COM Pull En.      Potential
+    1.43060e+01    2.25093e+03   -7.24942e+05
+
+           Step           Time
+         154000      308.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28723e+03    3.49782e+03    3.54979e+03    2.16158e+02    1.24892e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03256e+04    1.01426e+05   -2.30002e+03   -8.45170e+05    1.62955e+03
+ Position Rest.   COM Pull En.      Potential
+    1.96340e+01    2.20816e+03   -7.22061e+05
+
+           Step           Time
+         155000      310.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28397e+03    3.48916e+03    3.68278e+03    1.85566e+02    1.33599e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03189e+04    1.02386e+05   -2.30002e+03   -8.46025e+05    1.61077e+03
+ Position Rest.   COM Pull En.      Potential
+    5.22290e+01    2.09370e+03   -7.21885e+05
+
+           Step           Time
+         156000      312.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22056e+03    3.68543e+03    3.54840e+03    1.65689e+02    1.27189e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05321e+04    1.02957e+05   -2.30002e+03   -8.47932e+05    1.65378e+03
+ Position Rest.   COM Pull En.      Potential
+    3.53610e+01    2.06419e+03   -7.23098e+05
+
+           Step           Time
+         157000      314.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.41366e+03    3.29818e+03    3.63774e+03    1.52074e+02    1.30499e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05673e+04    1.01225e+05   -2.30002e+03   -8.45123e+05    1.65982e+03
+ Position Rest.   COM Pull En.      Potential
+    1.68140e+01    2.04551e+03   -7.22102e+05
+
+           Step           Time
+         158000      316.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28846e+03    3.45483e+03    3.56424e+03    1.87959e+02    1.30774e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06318e+04    1.01051e+05   -2.30002e+03   -8.45565e+05    1.56622e+03
+ Position Rest.   COM Pull En.      Potential
+    2.12179e+01    2.00515e+03   -7.22786e+05
+
+           Step           Time
+         159000      318.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.12428e+03    3.28216e+03    3.65607e+03    1.59278e+02    1.28023e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05900e+04    9.90025e+04   -2.30002e+03   -8.42265e+05    1.61956e+03
+ Position Rest.   COM Pull En.      Potential
+    2.14220e+01    1.92443e+03   -7.21905e+05
+
+           Step           Time
+         160000      320.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.12499e+03    3.35821e+03    3.56122e+03    1.73970e+02    1.31506e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05792e+04    1.00257e+05   -2.30002e+03   -8.44103e+05    1.61798e+03
+ Position Rest.   COM Pull En.      Potential
+    2.92129e+01    1.86720e+03   -7.22519e+05
+
+           Step           Time
+         161000      322.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19831e+03    3.22770e+03    3.64487e+03    1.73965e+02    1.28073e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06554e+04    1.00015e+05   -2.30002e+03   -8.44679e+05    1.63707e+03
+ Position Rest.   COM Pull En.      Potential
+    2.71309e+01    1.80214e+03   -7.23317e+05
+
+           Step           Time
+         162000      324.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.27533e+03    3.37342e+03    3.71895e+03    1.71063e+02    1.32911e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05193e+04    1.01421e+05   -2.30002e+03   -8.46048e+05    1.70203e+03
+ Position Rest.   COM Pull En.      Potential
+    2.98290e+01    1.71841e+03   -7.23089e+05
+
+           Step           Time
+         163000      326.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28951e+03    3.31191e+03    3.66081e+03    1.98844e+02    1.28106e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05381e+04    1.02183e+05   -2.30002e+03   -8.46551e+05    1.67336e+03
+ Position Rest.   COM Pull En.      Potential
+    4.69129e+01    1.66058e+03   -7.23007e+05
+
+           Step           Time
+         164000      328.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20350e+03    3.51853e+03    3.57880e+03    1.85213e+02    1.34528e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06602e+04    1.01734e+05   -2.30002e+03   -8.47686e+05    1.64928e+03
+ Position Rest.   COM Pull En.      Potential
+    3.78290e+01    1.57865e+03   -7.24495e+05
+
+           Step           Time
+         165000      330.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.36883e+03    3.29499e+03    3.65194e+03    2.05843e+02    1.29275e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05462e+04    1.00900e+05   -2.30002e+03   -8.45339e+05    1.57189e+03
+ Position Rest.   COM Pull En.      Potential
+    4.98040e+01    1.48769e+03   -7.23269e+05
+
+           Step           Time
+         166000      332.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26007e+03    3.32751e+03    3.67486e+03    2.20362e+02    1.29742e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04275e+04    1.01364e+05   -2.30002e+03   -8.46090e+05    1.59653e+03
+ Position Rest.   COM Pull En.      Potential
+    4.00969e+01    1.35938e+03   -7.23822e+05
+
+           Step           Time
+         167000      334.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22422e+03    3.53280e+03    3.66787e+03    2.15656e+02    1.30076e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04112e+04    1.00579e+05   -2.30002e+03   -8.45376e+05    1.58889e+03
+ Position Rest.   COM Pull En.      Potential
+    3.80570e+01    1.27082e+03   -7.23846e+05
+
+           Step           Time
+         168000      336.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20920e+03    3.37601e+03    3.62350e+03    1.80651e+02    1.30175e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05802e+04    1.01244e+05   -2.30002e+03   -8.46552e+05    1.63085e+03
+ Position Rest.   COM Pull En.      Potential
+    3.46680e+01    1.21323e+03   -7.24458e+05
+
+           Step           Time
+         169000      338.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19883e+03    3.32575e+03    3.55561e+03    1.65160e+02    1.28176e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05542e+04    1.00749e+05   -2.30002e+03   -8.45057e+05    1.63045e+03
+ Position Rest.   COM Pull En.      Potential
+    3.12300e+01    1.17348e+03   -7.23691e+05
+
+           Step           Time
+         170000      340.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.30059e+03    3.31252e+03    3.63806e+03    1.82864e+02    1.31648e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07409e+04    1.00617e+05   -2.30002e+03   -8.44774e+05    1.72887e+03
+ Position Rest.   COM Pull En.      Potential
+    4.97490e+01    1.08914e+03   -7.23098e+05
+
+           Step           Time
+         171000      342.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.14048e+03    3.38669e+03    3.60110e+03    1.49348e+02    1.28159e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07378e+04    1.02330e+05   -2.30002e+03   -8.46938e+05    1.62950e+03
+ Position Rest.   COM Pull En.      Potential
+    4.25060e+01    1.05179e+03   -7.23888e+05
+
+           Step           Time
+         172000      344.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28997e+03    3.21274e+03    3.64976e+03    1.76689e+02    1.24348e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06302e+04    1.01272e+05   -2.30002e+03   -8.45682e+05    1.55033e+03
+ Position Rest.   COM Pull En.      Potential
+    4.81220e+01    9.72274e+02   -7.23936e+05
+
+           Step           Time
+         173000      346.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21986e+03    3.32293e+03    3.73115e+03    2.19522e+02    1.34002e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06143e+04    1.02978e+05   -2.30002e+03   -8.47506e+05    1.59849e+03
+ Position Rest.   COM Pull En.      Potential
+    3.36170e+01    8.96371e+02   -7.23852e+05
+
+           Step           Time
+         174000      348.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.28849e+03    3.46779e+03    3.71551e+03    1.79127e+02    1.32811e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06504e+04    1.02483e+05   -2.30002e+03   -8.47221e+05    1.66315e+03
+ Position Rest.   COM Pull En.      Potential
+    3.04850e+01    8.33722e+02   -7.23881e+05
+
+           Step           Time
+         175000      350.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.22755e+03    3.42164e+03    3.59576e+03    1.68924e+02    1.29919e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04082e+04    1.02066e+05   -2.30002e+03   -8.46310e+05    1.58827e+03
+ Position Rest.   COM Pull En.      Potential
+    4.50050e+01    7.48181e+02   -7.24041e+05
+
+           Step           Time
+         176000      352.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26655e+03    3.44762e+03    3.70954e+03    1.96633e+02    1.32932e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05515e+04    1.01123e+05   -2.30002e+03   -8.45358e+05    1.61081e+03
+ Position Rest.   COM Pull En.      Potential
+    6.16120e+01    6.97579e+02   -7.23664e+05
+
+           Step           Time
+         177000      354.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24495e+03    3.33875e+03    3.56128e+03    1.52184e+02    1.28273e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05835e+04    1.00913e+05   -2.30002e+03   -8.45457e+05    1.61222e+03
+ Position Rest.   COM Pull En.      Potential
+    5.14410e+01    6.96977e+02   -7.24319e+05
+
+           Step           Time
+         178000      356.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.31330e+03    3.50189e+03    3.60272e+03    1.71093e+02    1.28682e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04578e+04    1.01550e+05   -2.30002e+03   -8.46124e+05    1.61321e+03
+ Position Rest.   COM Pull En.      Potential
+    4.73340e+01    6.04207e+02   -7.24276e+05
+
+           Step           Time
+         179000      358.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19714e+03    3.46346e+03    3.58529e+03    1.82449e+02    1.27090e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05600e+04    1.00174e+05   -2.30002e+03   -8.44025e+05    1.61832e+03
+ Position Rest.   COM Pull En.      Potential
+    6.96350e+01    4.98185e+02   -7.23706e+05
+
+           Step           Time
+         180000      360.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21732e+03    3.51415e+03    3.60487e+03    1.99643e+02    1.28316e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06138e+04    1.00832e+05   -2.30002e+03   -8.46326e+05    1.63178e+03
+ Position Rest.   COM Pull En.      Potential
+    4.54780e+01    4.74089e+02   -7.25210e+05
+
+           Step           Time
+         181000      362.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.27855e+03    3.22458e+03    3.61809e+03    1.51806e+02    1.30016e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04522e+04    1.00015e+05   -2.30002e+03   -8.44835e+05    1.59624e+03
+ Position Rest.   COM Pull En.      Potential
+    5.50280e+01    3.96982e+02   -7.25047e+05
+
+           Step           Time
+         182000      364.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.35103e+03    3.40046e+03    3.56554e+03    1.78917e+02    1.30312e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04475e+04    9.99928e+04   -2.30002e+03   -8.43230e+05    1.65100e+03
+ Position Rest.   COM Pull En.      Potential
+    5.01460e+01    3.04814e+02   -7.23284e+05
+
+           Step           Time
+         183000      366.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.21839e+03    3.35614e+03    3.58292e+03    2.03711e+02    1.29077e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06585e+04    1.01147e+05   -2.30002e+03   -8.46145e+05    1.62382e+03
+ Position Rest.   COM Pull En.      Potential
+    4.28540e+01    2.81923e+02   -7.25039e+05
+
+           Step           Time
+         184000      368.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.27690e+03    3.44362e+03    3.51142e+03    1.94974e+02    1.29991e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06527e+04    1.02347e+05   -2.30002e+03   -8.47969e+05    1.62766e+03
+ Position Rest.   COM Pull En.      Potential
+    6.30899e+01    2.33731e+02   -7.25618e+05
+
+           Step           Time
+         185000      370.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25236e+03    3.20996e+03    3.58025e+03    1.86875e+02    1.28369e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04162e+04    1.01181e+05   -2.30002e+03   -8.45194e+05    1.53256e+03
+ Position Rest.   COM Pull En.      Potential
+    3.14750e+01    1.55419e+02   -7.24664e+05
+
+           Step           Time
+         186000      372.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.25285e+03    3.27483e+03    3.46449e+03    1.72716e+02    1.29503e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.03663e+04    1.00438e+05   -2.30002e+03   -8.44276e+05    1.60842e+03
+ Position Rest.   COM Pull En.      Potential
+    3.57320e+01    8.19263e+01   -7.24585e+05
+
+           Step           Time
+         187000      374.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26061e+03    3.22025e+03    3.58526e+03    1.61370e+02    1.34597e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07041e+04    1.01601e+05   -2.30002e+03   -8.46725e+05    1.62005e+03
+ Position Rest.   COM Pull En.      Potential
+    5.42770e+01   -1.74697e+01   -7.25490e+05
+
+           Step           Time
+         188000      376.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26325e+03    3.27253e+03    3.54518e+03    1.67511e+02    1.27139e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05167e+04    1.00624e+05   -2.30002e+03   -8.44816e+05    1.56043e+03
+ Position Rest.   COM Pull En.      Potential
+    3.39460e+01   -1.03613e+02   -7.24965e+05
+
+           Step           Time
+         189000      378.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.33136e+03    3.37068e+03    3.50645e+03    1.74386e+02    1.22963e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05653e+04    1.01329e+05   -2.30002e+03   -8.45588e+05    1.63559e+03
+ Position Rest.   COM Pull En.      Potential
+    4.61729e+01   -1.60841e+02   -7.24861e+05
+
+           Step           Time
+         190000      380.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.35921e+03    3.34127e+03    3.65964e+03    1.97546e+02    1.25986e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04829e+04    9.98413e+04   -2.30002e+03   -8.45129e+05    1.66210e+03
+ Position Rest.   COM Pull En.      Potential
+    3.29460e+01   -1.61443e+02   -7.25754e+05
+
+           Step           Time
+         191000      382.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24866e+03    3.60284e+03    3.50466e+03    2.06864e+02    1.33344e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06339e+04    1.01768e+05   -2.30002e+03   -8.46669e+05    1.60720e+03
+ Position Rest.   COM Pull En.      Potential
+    3.29380e+01   -2.61442e+02   -7.25292e+05
+
+           Step           Time
+         192000      384.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.12835e+03    3.33498e+03    3.63025e+03    1.91251e+02    1.30668e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07936e+04    1.00294e+05   -2.30002e+03   -8.43899e+05    1.69557e+03
+ Position Rest.   COM Pull En.      Potential
+    6.13641e+01   -3.45778e+02   -7.24109e+05
+
+           Step           Time
+         193000      386.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.26191e+03    3.34639e+03    3.63823e+03    2.07393e+02    1.27036e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06491e+04    1.01655e+05   -2.30002e+03   -8.46584e+05    1.61224e+03
+ Position Rest.   COM Pull En.      Potential
+    3.64850e+01   -3.81922e+02   -7.25589e+05
+
+           Step           Time
+         194000      388.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.23964e+03    3.30270e+03    3.61050e+03    1.61885e+02    1.27348e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06067e+04    1.00684e+05   -2.30002e+03   -8.45399e+05    1.59553e+03
+ Position Rest.   COM Pull En.      Potential
+    4.91470e+01   -4.89149e+02   -7.25665e+05
+
+           Step           Time
+         195000      390.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.12786e+03    3.27876e+03    3.59092e+03    1.71057e+02    1.27791e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.08113e+04    1.00254e+05   -2.30002e+03   -8.45263e+05    1.68241e+03
+ Position Rest.   COM Pull En.      Potential
+    4.74540e+01   -5.37943e+02   -7.25859e+05
+
+           Step           Time
+         196000      392.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.24196e+03    3.36007e+03    3.58006e+03    1.82150e+02    1.27850e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05790e+04    1.02531e+05   -2.30002e+03   -8.47354e+05    1.54467e+03
+ Position Rest.   COM Pull En.      Potential
+    3.22100e+01   -5.78907e+02   -7.25903e+05
+
+           Step           Time
+         197000      394.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.20126e+03    3.40860e+03    3.51045e+03    1.76247e+02    1.34773e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.07473e+04    1.01065e+05   -2.30002e+03   -8.44869e+05    1.61960e+03
+ Position Rest.   COM Pull En.      Potential
+    5.18510e+01   -6.28303e+02   -7.24669e+05
+
+           Step           Time
+         198000      396.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.19895e+03    3.45900e+03    3.48521e+03    1.91316e+02    1.34589e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.05413e+04    1.01066e+05   -2.30002e+03   -8.46620e+05    1.59371e+03
+ Position Rest.   COM Pull En.      Potential
+    2.49660e+01   -6.16255e+02   -7.26630e+05
+
+           Step           Time
+         199000      398.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.33807e+03    3.49516e+03    3.55020e+03    1.88312e+02    1.21371e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.04255e+04    1.02359e+05   -2.30002e+03   -8.47767e+05    1.64094e+03
+ Position Rest.   COM Pull En.      Potential
+    3.85100e+01   -6.89748e+02   -7.26508e+05
+
+           Step           Time
+         200000      400.00000
+
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    1.17020e+03    3.47674e+03    3.56774e+03    1.90330e+02    1.33035e+03
+     Coulomb-14        LJ (SR)  Disper. corr.   Coulomb (SR)   Coul. recip.
+    1.06539e+04    1.01495e+05   -2.30002e+03   -8.45287e+05    1.56799e+03
+ Position Rest.   COM Pull En.      Potential
+    1.59090e+01   -6.97580e+02   -7.24816e+05
+
+
+	M E G A - F L O P S   A C C O U N T I N G
+
+ NB=Group-cutoff nonbonded kernels    NxN=N-by-N cluster Verlet kernels
+ RF=Reaction-Field  VdW=Van der Waals  QSTab=quadratic-spline table
+ W3=SPC/TIP3p  W4=TIP4p (single or pairs)
+ V&F=Potential and force  V=Potential only  F=Force only
+
+ Computing:                               M-Number         M-Flops  % Flops
+-----------------------------------------------------------------------------
+ Pair Search distance check            6000.821172       54007.391     7.8
+ NxN QSTab Elec. + LJ [V&F]            6267.090032      369758.312    53.6
+ NxN QSTab Elec. [V&F]                 5810.249072      238220.212    34.5
+ 1,4 nonbonded interactions               0.756363          68.073     0.0
+ Calc Weights                            31.807647        1145.075     0.2
+ Spread Q Bspline                       678.563136        1357.126     0.2
+ Gather F Bspline                       678.563136        4071.379     0.6
+ 3D-FFT                                2560.243128       20481.945     3.0
+ Solve PME                                1.337856          85.623     0.0
+ Shift-X                                 10.602549          63.615     0.0
+ Bonds                                    0.149544           8.823     0.0
+ Angles                                   0.524007          88.033     0.0
+ Propers                                  0.810231         185.543     0.0
+ Impropers                                0.059496          12.375     0.0
+ Pos. Restr.                              0.000402           0.020     0.0
+ Virial                                  10.611594         191.009     0.0
+-----------------------------------------------------------------------------
+ Total                                                  689744.554   100.0
+-----------------------------------------------------------------------------
+
+
+     R E A L   C Y C L E   A N D   T I M E   A C C O U N T I N G
+
+On 1 MPI rank
+
+ Computing:          Num   Num      Call    Wall time         Giga-Cycles
+                     Ranks Threads  Count      (s)         total sum    %
+-----------------------------------------------------------------------------
+ Neighbor search        1    1        201      31.515         81.687  11.4
+ Force                  1    1        201     238.088        617.124  86.3
+ PME mesh               1    1        201       2.881          7.467   1.0
+ NB X/F buffer ops.     1    1        201       0.040          0.102   0.0
+ COM pull force         1    1        201       0.002          0.004   0.0
+ Write traj.            1    1        201       2.760          7.154   1.0
+ Rest                                           0.740          1.918   0.3
+-----------------------------------------------------------------------------
+ Total                                        276.025        715.456 100.0
+-----------------------------------------------------------------------------
+ Breakdown of PME mesh computation
+-----------------------------------------------------------------------------
+ PME spread             1    1        201       0.738          1.913   0.3
+ PME gather             1    1        201       0.659          1.709   0.2
+ PME 3D-FFT             1    1        402       1.084          2.810   0.4
+ PME solve Elec         1    1        201       0.398          1.032   0.1
+-----------------------------------------------------------------------------
+
+NOTE: 11 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:      275.981      276.025      100.0
+                 (ns/day)    (hour/ns)
+Performance:      125.207        0.192
+Finished mdrun on rank 0 Mon Jun 26 17:09:25 2023
+

@@ -2,7 +2,7 @@
 integrator  = md		; the default leap-frog integrator
 dt          = 0.002		; 2 fs time step
 tinit       = 0			; start at t=0
-nsteps      = 50000     ; 50000 = 100 ps 
+nsteps      = 125000     ; 125000 = 250 ps 
 
 ; Output parameters
 nstxout     = 1000      ; 1000 steps = every 2 ps

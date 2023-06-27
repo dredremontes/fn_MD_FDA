@@ -1,0 +1,17 @@
+# This file was created Thu Mar 23 12:17:58 2023
+# Created by:
+#    :-) GROMACS - gmx mdrun, 2020.4-dev-20201029-4b5790511-dirty-unknown (-:
+# 
+# Executable:   /home/amontes/gromacs-fda/build/bin/gmx_fda
+# Data prefix:  /home/amontes/gromacs-fda/build (source tree)
+# Working dir:  /mnt/d/Mofrad Lab/Guest Lecture 3-23-23/fn_MD_FDA
+# Command line:
+#   gmx_fda mdrun -nt 1 -rerun pull_fn.xtc -pfi input.pfi -pfn index.ndx -s pull_fn.tpr -psr output.psr
+# gmx mdrun is part of G R O M A C S:
+#
+# GRoups of Organic Molecules in ACtion for Science
+#
+@    title "Pull force"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "Force (kJ/mol/nm)"
+@TYPE xy
