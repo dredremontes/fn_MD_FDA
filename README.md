@@ -208,4 +208,4 @@ The following command will overlay the FDA results onto the molecule:
 ```
 pf_loaduser "output.psr" true 1 BWR
 ```
-The TkConsole should print out "now loading per-residue data" and after a few seconds to a minute, the results should be shown on the molecule itself. You can scroll through the trajectory and see how the different regions within the fibronectin beta sheets activate to resist the unwinding. The final video can be seen in `fn_FDA_traj.mp4`.
+The TkConsole should print out "now loading per-residue data" and after a few seconds to a minute, the results should be shown on the molecule itself. You can scroll through the trajectory and see how the different regions within the fibronectin beta sheets activate to resist the unwinding. The final video can be seen in `fn_1326-1418_fda_traj.mp4`.
