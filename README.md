@@ -171,7 +171,10 @@ gmx grompp -f pull_fn.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt
 ```
 gmx mdrun -v -deffnm pull_fn -s pull_fn.tpr -pf pullforce.xvg -px pullext.xvg
 ```
-
+To calcualte the end-to-end distance and radius of gyration of the protein we can use the following command, then select "Protein"
+```
+gmx polystat -s pull_fn.tpr -f pull_fn.xtc -n index.ndx -o end2end.xvg
+```
 Force Distribution Analysis
 ==============
 To run the force distribution analysis, gromacs-fda will need to be installed from https://github.com/HITS-MBM/gromacs-fda. Use the input file found in `./fn_MD_FDA/input/input.pfi` and the steered MD trajectory of choice: 
