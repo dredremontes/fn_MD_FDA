@@ -171,7 +171,7 @@ gmx grompp -f pull_fn.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt
 ```
 gmx mdrun -v -deffnm pull_fn -s pull_fn.tpr -pf pullforce.xvg -px pullext.xvg
 ```
-To calcualte the end-to-end distance and radius of gyration of the protein we can use the following command, then select "Protein"
+To calculate the end-to-end distance and radius of gyration of the protein we can use the following command, then select "Protein"
 ```
 gmx polystat -s pull_fn.tpr -f pull_fn.xtc -n index.ndx -o end2end.xvg
 ```
@@ -184,8 +184,12 @@ gmx_fda mdrun -nt 1 -rerun pull_fn.xtc -pfi input.pfi -pfn index.ndx -s pull_fn.
 Post-processing - Trajectory
 ===============
 
-Download and open VMD 1.9.4a https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD. Click `file > New molecule > browse` and open `./fn_MD_FDA/output/npt.gro`. In main VMD window, right click the `npt.gro` molecule (which should be highlighted) and click `Load data into molecule` and select `./fn_MD_FDA/output/pull_fn.xtc`  Then click `Load` in the Molecule File Browser window. The trajectory should now be loaded in the display. 
+Download and open VMD 1.9.4a https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD. Click `file > New molecule > browse` and open `./fn_MD_FDA/output/npt.gro`. In main VMD window, right click the `npt.gro` molecule (which should be highlighted) and click `Load data into molecule` and select `./fn_MD_FDA/output/pull_fn.xtc`  Then click `Load` in the Molecule File Browser window. The trajectory should now be loaded in the display.
 
+If you notice that the molecule is crossing the box boundary, leading to "wrap-around" visual artefacts, you can correct the trajectory with the following command:
+```
+gmx trjconv -f pull_fn.xtc -pbc nojump -o pull_fn_edited.xtc
+```
 Go to `Graphics > Representations` and under `Drawing Method` select `NewCartoon`. The cartoon representation should be displayed now and the water and ions should be hidden. 
 
 Now go to `Extensions > VMD Preferences` and go to the Custom tab. Click `New` and name it "pf_loaduser". In the "code" box, write the following lines, but replacing the "path/to/pf_loaduser.tcl" with the location of the `pf_loaduser.tcl` script. This script is available in the `fn_MD_FDA` directory. In my local PC, I moved the `pf_loaduser.tcl` file to `"C:/Program Files/VMD/plugins/WIN64/tcl/pf_loaduser.tcl"`.
