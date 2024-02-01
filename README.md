@@ -136,33 +136,22 @@ Press enter/return twice. This selected the alpha-carbon on the Glycine residue 
 
 Press q and then enter to save and quit. 
 
-Next, we create constraints
-```
-gmx genrestr -f npt.gro -n index.ndx -o R_pull.itp
-```
-Type the number next to the pull group and press enter.
+Next, we create the constraint on the hold group we just made
 ```
 gmx genrestr -f npt.gro -n index.ndx -o R_hold.itp
 ```
-Type the number next to the hold group and press enter.
+Type the number next to the hold group (likely number 20) and press enter.
 
-These position restraints also need to be defined in their respective protein chain .itp files. For the restraint on the hold group, we can add the following to the bottom of the posre.itp file and to the topol.top file after "; Include Position restraint file":
+This position restraint needs to be defined in the protein chain .itp files. For the restraint on the hold group, we can add the following to the bottom of the posre.itp file and to the topol.top file after "; Include Position restraint file", but before the water topology is included:
 ```
 #ifdef R_hold
 #include "R_hold.itp"
 #endif
 ```
-For the restraint on the pull group, we can add the following to the bottom of the posre.itp file and to the topol.top file after "; Include Position restraint file":
-```
-#ifdef R_pull
-#include "R_pull.itp"
-#endif
-```
-We must open up the R_hold.itp and R_pull file to manually renumber the left-most column, i. This column will contain the original atom numbers, which confuses GROMACS because position restraint (.itp) files always start with the number 1. So we have to go in and manually change ALL the atom numbers in R_pull.itp and R_hold.itp to 1, 2, 3 and so on. However, for this case, there is only one atom, so they each get labeled as "1". This seems silly, but it actually affects with atom gets pulled. If we don't renumber them in this way, Gromacs can't find the pull or hold atom and nothing gets pulled. 
 
 Add the following to the pull.mdp at the top if it is not already there:
 ```
-define = -DR_hold -DR_pull
+define = -DR_hold
 ```
 Running the steered MD.
 ```

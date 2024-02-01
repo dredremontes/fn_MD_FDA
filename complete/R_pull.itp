@@ -1,5 +1,0 @@
-; position restraints for pull of Protein in water
-
-[ position_restraints ]
-;  i funct       fcx        fcy        fcz
-1    1       1000       1000       1000

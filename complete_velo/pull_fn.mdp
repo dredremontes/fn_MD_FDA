@@ -1,5 +1,5 @@
 title       = pull_fn
-define      = -DR_hold -DR_pull
+define      = -DR_hold
 
 ; Run parameters
 integrator  = md
@@ -59,26 +59,25 @@ DispCorr    = EnerPres
 ; Pull code
 pull                    = yes
 pull-ncoords            = 1         ; only one reaction coordinate 
-pull-ngroups            = 2         ; defining two reaction coordinates
+pull-ngroups            = 1         ; defining two reaction coordinates
 
 pull_group1_name        = pull	 ; pulled FN group 
-pull_group2_name		= hold	 ; fixed FN group
 
 ; constant velocity simulation
 pull_coord1_type        = umbrella      ; harmonic potential
 pull_coord1_geometry    = direction-periodic      ; periodic distance increase
 pull_coord1_dim         = Y N N		    ; Components printed to the output files
-pull_coord1_vec         = -1 0 0      ; pull along x direction
-pull_coord1_groups      = 1 2
+pull_coord1_vec         = 1 0 0      ; pull along x direction
+pull_coord1_groups      = 0 1
 pull_coord1_start       = yes       ; define initial COM distance > 0
-pull_coord1_rate        = 0.1       ; 0.1 nm per ps = 100 nm per ns
-pull_coord1_k           = 500      	; kJ mol^-1 nm^-2
+pull_coord1_rate        = 0.10      ; 0.1 nm per ps = 100 nm per ns
+pull_coord1_k           = 50      	; kJ mol^-1 nm^-2
 
 ; Constant Force Simulation:
-; pull_coord1_type        = constant-force        ; Center of mass pulling using a linear potential
-; pull_coord1_geometry    = direction-periodic    ; pulls in direction of vector
-; pull_coord1_dim         = Y N N		    		; Components printed to the output files
-; pull_coord1_vec         = 1 0 0      	    	; pull along x direction. 
-; pull_coord1_groups      = 1 2 					; indices on which the pull coordinate will operate.
-; pull_coord1_start       = no       				; no init 
-; pull_coord1_k           = 602.4      			; kJ mol-1 nm-1, it is the negative of the constant force, 1000pN
+;pull_coord1_type        = constant-force        ; Center of mass pulling using a linear potential
+;pull_coord1_geometry    = direction-periodic    ; pulls in direction of vector
+;pull_coord1_dim         = Y N N		    		; Components printed to the output files
+;pull_coord1_vec         = 1 0 0      	    	; pull along x direction. 
+;pull_coord1_groups      = 0 1 					; indices on which the pull coordinate will operate.
+;pull_coord1_start       = no       				; no init 
+;pull_coord1_k           = 602.4      			; kJ mol-1 nm-1, it is the negative of the constant force, 1000pN
